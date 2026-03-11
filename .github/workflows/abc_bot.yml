@@ -1,0 +1,39 @@
+name: Bot Lector ABC
+
+on:
+  schedule:
+    # 13:00, 16:00, y 21:00 UTC equivalen a 10:00, 13:00 y 18:00 hora de Argentina (UTC-3)
+    - cron: '0 13 * * *'
+    - cron: '0 16 * * *'
+    - cron: '0 21 * * *'
+  workflow_dispatch: # Permite ejecutar el bot manualmente desde GitHub
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Instalar navegadores de Playwright
+      run: playwright install chromium
+
+    - name: Ejecutar Bot Lector ABC
+      env:
+        GITHUB_ACTIONS: "true"
+        ABC_USUARIO: ${{ secrets.ABC_USUARIO }}
+        ABC_CLAVE: ${{ secrets.ABC_CLAVE }}
+        EMAIL_REMITENTE: ${{ secrets.EMAIL_REMITENTE }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      run: python main.py

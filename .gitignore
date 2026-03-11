@@ -1,0 +1,27 @@
+# Entorno Virtual
+venv/
+env/
+.venv/
+
+# Variables de Entorno (Credenciales)
+.env
+
+# Cachés de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Base de datos y cachés del scraper
+ofertas.db
+notified_ids.json
+
+# Logs y Debug
+*.log
+debug_filtro.png
+error_clic.png
+*.html
+output_log.txt
+
+# Directorio de Playwright (por si acaso)
+.playwright/
