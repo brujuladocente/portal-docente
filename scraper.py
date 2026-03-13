@@ -360,6 +360,15 @@ def scrape_ofertas(page: Page, distritos: list):
             except Exception:
                 pass
                 
+            # 1.5 Esperar obligatoriamente que el modal se cierre (state='hidden')
+            try:
+                page.locator(".modal-content, .modal").locator("visible=true").first.wait_for(state="hidden", timeout=10000)
+            except Exception:
+                pass
+            
+            print(f"[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...")
+            page.wait_for_timeout(3000)
+            
             # 2. Verificación por Contenido (Esperar por tarjetas o el mensaje de '0 registros')
             print(f"[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...")
             try:
@@ -375,23 +384,37 @@ def scrape_ofertas(page: Page, distritos: list):
             # --- VALIDACIÓN DEL FILTRO DE DISTRITO ---
             if page.locator(".card").count() > 0:
                 try:
-                    primera_tarjeta_texto = page.locator(".card").first.text_content().upper()
-                    match_distrito_check = re.search(r'DISTRITO\s*:\s*([^\n]+)', primera_tarjeta_texto)
-                    if match_distrito_check:
-                        distrito_leido = match_distrito_check.group(1).strip().upper()
-                        # Normalizar comparaciones sencillas (quitar acentos básicos)
-                        import unicodedata
-                        def unidecode_str(s):
-                            return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+                    import unicodedata
+                    def unidecode_str(s):
+                        return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
                         
-                        dist_leido_norm = unidecode_str(distrito_leido)
-                        dist_buscado_norm = unidecode_str(distrito.upper())
+                    dist_buscado_norm = unidecode_str(distrito.upper())
+                    
+                    # Intentos de validación cruzada
+                    intentos_validacion = 2
+                    for intento in range(intentos_validacion):
+                        primera_tarjeta_texto = page.locator(".card").first.text_content().upper()
+                        match_distrito_check = re.search(r'DISTRITO\s*:\s*([^\n]+)', primera_tarjeta_texto)
                         
-                        if dist_buscado_norm not in dist_leido_norm and dist_leido_norm not in dist_buscado_norm:
-                            print(f"[SCRAPER] ❌ ERROR DE FILTRO EN PORTAL: Buscábamos '{distrito}', pero vimos tarjetas de '{distrito_leido}'.")
-                            raise Exception("Portal ignoró el filtro de búsqueda de distrito")
+                        if match_distrito_check:
+                            distrito_leido = match_distrito_check.group(1).strip().upper()
+                            dist_leido_norm = unidecode_str(distrito_leido)
+                            
+                            if dist_buscado_norm not in dist_leido_norm and dist_leido_norm not in dist_buscado_norm:
+                                if intento < intentos_validacion - 1:
+                                    print(f"[SCRAPER] ⚠ Falso positivo potencial de Distrito. Leímos '{distrito_leido}' en vez de '{distrito}'. Esperando 2s y volviendo a leer...")
+                                    page.wait_for_timeout(2000)
+                                    continue
+                                else:
+                                    print(f"[SCRAPER] ❌ ERROR DE FILTRO EN PORTAL (Confirmado): Buscábamos '{distrito}', pero vimos tarjetas de '{distrito_leido}'.")
+                                    raise Exception("Portal ignoró el filtro de búsqueda de distrito")
+                            else:
+                                print(f"[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica '{distrito_leido}')")
+                                break # Match exitoso, salir del loop
                         else:
-                            print(f"[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica '{distrito_leido}')")
+                            # Si no pudimos leer el regex no rompemos todo, pasamos al siguiente intento o confirmamos
+                            break 
+                            
                 except Exception as e_val:
                     if "Portal ignoró" in str(e_val):
                         raise e_val
