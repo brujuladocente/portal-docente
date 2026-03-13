@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "E:\IA\Lector ABC Multi\main.py", line 75, in job
+    lista_maestra = scrape_ofertas(page, distritos_unicos)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\IA\Lector ABC Multi\scraper.py", line 313, in scrape_ofertas
+    page_activa = gestionar_estado_sesion(page)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\IA\Lector ABC Multi\scraper.py", line 89, in gestionar_estado_sesion
+    print("[ESTADOS] Clickeando 'Postularse' (target=_blank \u2192 esperando nueva pestaña)...")
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 49: character maps to <undefined>
+Traceback (most recent call last):
+  File "E:\IA\Lector ABC Multi\main.py", line 75, in job
+    lista_maestra = scrape_ofertas(page, distritos_unicos)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\IA\Lector ABC Multi\scraper.py", line 313, in scrape_ofertas
+    page_activa = gestionar_estado_sesion(page)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\IA\Lector ABC Multi\scraper.py", line 89, in gestionar_estado_sesion
+    print("[ESTADOS] Clickeando 'Postularse' (target=_blank \u2192 esperando nueva pestaña)...")
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 49: character maps to <undefined>

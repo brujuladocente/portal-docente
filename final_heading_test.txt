@@ -1,0 +1,66 @@
+C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages\playwright\driver\package\lib\server\chromium\crPage.js:500
+    this._firstNonInitialNavigationCommittedReject(new _errors.TargetClosedError());
+                                                   ^
+
+TargetClosedError: Target page, context or browser has been closed
+    at FrameSession.dispose (C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages\playwright\driver\package\lib\server\chromium\crPage.js:500:52)
+    at CRPage.didClose (C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages\playwright\driver\package\lib\server\chromium\crPage.js:162:60)
+    at CRBrowser._onDetachedFromTarget (C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages\playwright\driver\package\lib\server\chromium\crBrowser.js:200:14)
+    at CRSession.emit (node:events:518:28)
+    at C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages\playwright\driver\package\lib\server\chromium\crConnection.js:160:14
+
+Node.js v20.12.2
+Bot Lector ABC en línea (Modo Local).
+Ejecuciones: 08:00, 13:00 y 18:00 horas.
+Ejecutando prueba inicial...
+
+============================================================
+Iniciando ejecución programada del bot Lector ABC (Memoria Individual)...
+============================================================
+Obteniendo usuarios desde la base de datos (Google Sheets)...
+[GOOGLE SHEETS] Variable GOOGLE_CREDENTIALS no encontrada, buscando archivo credentials.json (Local).
+[GOOGLE SHEETS] Encabezados detectados: ['Marca temporal', 'Nombre', '  Email  (al que querés que te lleguen las ofertas)', '1° distrito de interés', '2° distrito de interés', '3° distrito de interés', '  Nivel/Modalidad  ', 'Códigos de materias (en mayúsuculas y divido por comas. Ej: FIA, CCD, FCT). Podés ver los códigos ACÁ. \nNO PONER NOMBRE DE LA MATERIA, SÓLO CÓDIGO.', 'Estado']
+[GOOGLE SHEETS] Mapa de columnas:
+  Nombre   -> 'Nombre'
+  Email    -> '  Email  (al que querés que te lleguen las ofertas)'
+  Estado   -> 'Estado'
+  Materias -> 'Códigos de materias (en mayúsuculas y divido por comas. Ej: FIA, CCD, FCT). Podés ver los códigos ACÁ. 
+NO PONER NOMBRE DE LA MATERIA, SÓLO CÓDIGO.'
+  Distritos -> ['1° distrito de interés', '2° distrito de interés', '3° distrito de interés']
+[GOOGLE SHEETS] Se obtuvieron 1 usuarios con estado ACTIVO correctamente.
+Distritos a buscar (Lista Única): ['LANUS', 'L DE ZAMORA', 'AVELLANEDA']
+Traceback (most recent call last):
+  File "E:\IA\Lector ABC Multi\main.py", line 168, in <module>
+    main()
+  File "E:\IA\Lector ABC Multi\main.py", line 160, in main
+    job() 
+    ^^^^^
+  File "E:\IA\Lector ABC Multi\main.py", line 71, in job
+    page = context.new_page()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages\playwright\sync_api\_generated.py", line 12400, in new_page
+    return mapping.from_impl(self._sync(self._impl_obj.new_page()))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages\playwright\_impl\_sync_base.py", line 113, in _sync
+    self._dispatcher_fiber.switch()
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages\playwright\sync_api\_context_manager.py", line 56, in greenlet_main
+    self._loop.run_until_complete(self._connection.run_as_sync())
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 637, in run_until_complete
+    self.run_forever()
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1873, in _run_once
+    event_list = self._selector.select(timeout)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 439, in select
+    self._poll(timeout)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 808, in _poll
+    status = _overlapped.GetQueuedCompletionStatus(self._iocp, ms)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+^C

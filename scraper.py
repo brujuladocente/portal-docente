@@ -179,7 +179,7 @@ def extraer_todas_paginas(page: Page) -> list:
     while True:
         print(f"\n[SCRAPER] --- Extrayendo Página {pagina_actual} ---")
         try:
-            snapshot_antes = page.locator(".card").first.text_content() if page.locator(".card").count() > 0 else ""
+            snapshot_antes = page.locator(".card").first.evaluate("node => node.innerText") if page.locator(".card").count() > 0 else ""
         except Exception:
             snapshot_antes = ""
 
@@ -188,7 +188,9 @@ def extraer_todas_paginas(page: Page) -> list:
 
         for i, t in enumerate(tarjetas):
             try:
-                texto_tarjeta = t.text_content()
+                # Usamos evaluate en vez de text_content para conservar los saltos de línea vitales (\n)
+                # sin sufrir el Timeout de 30s que tenía inner_text() en Playwright
+                texto_tarjeta = t.evaluate("node => node.innerText")
                 if not texto_tarjeta:
                     continue
                     
@@ -208,7 +210,13 @@ def extraer_todas_paginas(page: Page) -> list:
                 match_distrito = re.search(r'DISTRITO\s*:\s*([^\n]+)', texto_upper)
                 distrito_tarjeta = match_distrito.group(1).strip() if match_distrito else "DESCONOCIDO"
 
+                # Limpieza de líneas
                 lineas = [line.strip() for line in texto_tarjeta.split('\n') if line.strip()]
+                
+                # --- EXTRACCIÓN QUIRÚRGICA ---
+                
+                # Encabezado Garantizado: Únicamente Sigla Limpia — Distrito Limpio (Ej: CCD — AVELLANEDA)
+                encabezado_estricto = f"{codigo_area} — {distrito_tarjeta}"
 
                 escuela_linea = next((l for l in lineas if 'ESCUELA' in l.upper()), "")
                 escuela = escuela_linea.split(':', 1)[-1].strip() if escuela_linea else "Ver en Portal"
@@ -231,10 +239,11 @@ def extraer_todas_paginas(page: Page) -> list:
                 if not observaciones or "POSTULARSE" in observaciones.upper():
                     observaciones = "-"
 
-                print(f"  -> [EXTRACCIÓN] Código: {codigo_area} | IGE: {ige} | Distrito: {distrito_tarjeta} | Nivel: {nivel} (Pág: {pagina_actual})")
+                print(f"  -> [EXTRACCIÓN] {encabezado_estricto} | IGE: {ige} | Nivel: {nivel} (Pág: {pagina_actual})")
 
                 ofertas_extraidas.append({
                     "id": f"IGE_{ige}_{distrito_tarjeta.replace(' ', '_')}",
+                    "encabezado": encabezado_estricto,
                     "ige": ige,
                     "codigo_area": codigo_area,
                     "distrito": distrito_tarjeta,
@@ -274,7 +283,7 @@ def extraer_todas_paginas(page: Page) -> list:
 
             # Guardia de movimiento
             try:
-                snapshot_despues = page.locator(".card").first.text_content() if page.locator(".card").count() > 0 else ""
+                snapshot_despues = page.locator(".card").first.evaluate("node => node.innerText") if page.locator(".card").count() > 0 else ""
             except Exception:
                 snapshot_despues = ""
 
@@ -388,7 +397,7 @@ def scrape_ofertas(page: Page, distritos: list):
                     # Intentos de validación cruzada
                     intentos_validacion = 2
                     for intento in range(intentos_validacion):
-                        primera_tarjeta_texto = page.locator(".card").first.text_content().upper()
+                        primera_tarjeta_texto = page.locator(".card").first.evaluate("node => node.innerText").upper()
                         match_distrito_check = re.search(r'DISTRITO\s*:\s*([^\n]+)', primera_tarjeta_texto)
                         
                         if match_distrito_check:

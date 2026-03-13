@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Formateo y envío de correos electrónicos vía Gmail (smtplib y email.mime).
 """
@@ -35,15 +36,15 @@ def enviar_correo(ofertas, destinatario, nombre="Colega"):
     
     for o in ofertas:
         html += f"""
-        <div style="font-family: Arial, sans-serif; border-left: 4px solid #6c3483; padding: 10px 14px; margin-bottom: 14px; background:#fafafa;">
-          <h3 style="color: #6c3483; margin: 0 0 6px 0;">{o.get('codigo_area', 'N/A')} — {o.get('distrito', 'N/A')}</h3>
+        <div style="font-family: Arial, sans-serif; border-left: 4px solid #800080; padding: 12px 16px; margin-bottom: 14px; background: #f9f9f9;">
+          <h3 style="color: #800080; margin: 0 0 6px 0;">{o.get('encabezado', 'N/A').strip()}</h3>
           <p style="margin: 3px 0; color: #333;">
-            <strong>Nivel:</strong> {o.get('nivel', 'Desconocido')} &nbsp;|&nbsp;
-            <strong>Escuela:</strong> {o.get('escuela', 'Desconocido')}
+            <b>Nivel:</b> {o.get('nivel', 'Desconocido').strip()} &nbsp;|&nbsp;
+            <b>Escuela:</b> {o.get('escuela', 'Desconocido').strip()}
           </p>
-          <p style="margin: 3px 0; color: #333;"><strong>Horarios:</strong> {o.get('horarios', 'Ver en Portal')}</p>
-          <p style="margin: 3px 0; color: #555;"><strong>Observaciones:</strong> {o.get('observaciones', '-')}</p>
-          <p style="margin: 3px 0; color: #333;"><strong>Nro. IGE:</strong> {o.get('ige', 'Desconocido')}</p>
+          <p style="margin: 3px 0; color: #333;"><b>Horarios:</b> {o.get('horarios', 'Ver en Portal').strip()}</p>
+          <p style="margin: 3px 0; color: #555;"><b>Observaciones:</b> {o.get('observaciones', '-').strip()}</p>
+          <p style="margin: 3px 0; color: #333;"><b>Nro. IGE:</b> {o.get('ige', 'Desconocido').strip()}</p>
         </div>
         """
     

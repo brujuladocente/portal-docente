@@ -1,0 +1,1152 @@
+Bot Lector ABC en línea (Modo Local).
+Ejecuciones: 08:00, 13:00 y 18:00 horas.
+Ejecutando prueba inicial...
+
+============================================================
+Iniciando ejecución programada del bot Lector ABC (Memoria Individual)...
+============================================================
+Obteniendo usuarios desde la base de datos (Google Sheets)...
+[GOOGLE SHEETS] Variable GOOGLE_CREDENTIALS no encontrada, buscando archivo credentials.json (Local).
+[GOOGLE SHEETS] Encabezados detectados: ['Marca temporal', 'Nombre', '  Email  (al que querés que te lleguen las ofertas)', '1° distrito de interés', '2° distrito de interés', '3° distrito de interés', '  Nivel/Modalidad  ', 'Códigos de materias (en mayúsuculas y divido por comas. Ej: FIA, CCD, FCT). Podés ver los códigos ACÁ. \nNO PONER NOMBRE DE LA MATERIA, SÓLO CÓDIGO.', 'Estado']
+[GOOGLE SHEETS] Mapa de columnas:
+  Nombre   -> 'Nombre'
+  Email    -> '  Email  (al que querés que te lleguen las ofertas)'
+  Estado   -> 'Estado'
+  Materias -> 'Códigos de materias (en mayúsuculas y divido por comas. Ej: FIA, CCD, FCT). Podés ver los códigos ACÁ. 
+NO PONER NOMBRE DE LA MATERIA, SÓLO CÓDIGO.'
+  Distritos -> ['1° distrito de interés', '2° distrito de interés', '3° distrito de interés']
+[GOOGLE SHEETS] Se obtuvieron 5 usuarios con estado ACTIVO correctamente.
+Distritos a buscar (Lista Única): ['SAN FERNANDO', 'L DE ZAMORA', 'SAN ISIDRO', 'V LOPEZ', 'T DE FEBRERO', 'QUILMES', 'LANUS', 'AVELLANEDA', 'BERAZATEGUI', 'TIGRE']
+
+[ESTADOS] Navegando a Actos Públicos Digitales (APD)...
+
+[ESTADOS] Evaluando Estado Actual del DOM (Intento 1/3)...
+[ESTADOS] -> Detectado ESTADO A (Pantalla de Login Centralizado).
+[ESTADOS] Omitiendo limpieza de modales. Procediendo a inyectar credenciales...
+
+[LOGIN] Iniciando inyección de credenciales...
+[LOGIN] Buscando formulario de credenciales...
+[LOGIN] Esperando campo CUIL (text/number/email)...
+[LOGIN] Forzando clic en CUIL...
+[LOGIN] Tipeando CUIL...
+[LOGIN] Esperando campo Contraseña (password)...
+[LOGIN] Forzando clic en Contraseña...
+[LOGIN] Tipeando Contraseña...
+[LOGIN] Presionando Enter para enviar el formulario...
+[ESTADOS] Credenciales inyectadas, esperando volver a APD...
+
+[ESTADOS] Evaluando Estado Actual del DOM (Intento 2/3)...
+[ESTADOS] -> Detectado ESTADO B (APD Vista Pública).
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[ESTADOS] Clickeando en 'Iniciar Sesión ABC'...
+
+[ESTADOS] Evaluando Estado Actual del DOM (Intento 3/3)...
+[ESTADOS] -> Detectado ESTADO C (APD Logueado).
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[ESTADOS] Clickeando 'Postularse' (target=_blank → esperando nueva pestaña)...
+[ESTADOS] URL de la nueva pestaña: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+[ESTADOS] Cerrando pestaña original (dashboard)...
+[ESTADOS] ✓ Nueva pestaña es la vista de postulaciones. Continuando en ella.
+[SCRAPER] URL activa para scraping: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+[SCRAPER] Advertencia: título de la sección no detectado (continuando de todas formas).
+
+--- Procesando Distrito: SAN FERNANDO ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'SAN FERNANDO'...
+[SCRAPER] Esperando opción 'SAN FERNANDO'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para SAN FERNANDO...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'SAN FERNANDO')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en SAN FERNANDO.
+[SCRAPER] ✓ Distrito SAN FERNANDO procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 31
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887242 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887297 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887137 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883783 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3853290 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884196 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884639 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885426 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885078 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885598 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884024 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884269 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884352 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884545 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885213 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885884 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885753 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886179 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883954 | Nivel: INICIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886517 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876761 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886688 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3820245 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886751 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886808 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886867 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887413 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887466 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887508 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3834831 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3840850 | Nivel: ESPECIAL (Pág: 1)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 1. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: L DE ZAMORA ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'L DE ZAMORA'...
+[SCRAPER] Esperando opción 'L DE ZAMORA'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para L DE ZAMORA...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'LOMAS DE ZAMORA')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en L DE ZAMORA.
+[SCRAPER] ✓ Distrito L DE ZAMORA procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 89
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886837 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887078 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887193 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883355 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883818 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883853 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886098 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883059 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883105 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883132 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882587 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3850255 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3854411 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883221 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883276 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883356 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883178 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883764 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883851 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883921 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883540 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883646 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883685 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883695 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883614 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883662 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883400 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883188 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865880 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884416 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884469 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884615 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883974 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884559 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884871 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885286 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885247 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885445 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885519 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885355 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885404 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885491 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885541 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884587 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885388 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883069 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883087 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883109 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883134 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884367 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885085 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885590 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885109 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885139 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885351 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884669 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885468 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885719 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885846 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886045 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886064 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885240 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885671 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886001 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886673 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886906 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886614 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886682 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887163 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886000 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886563 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885935 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886453 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886960 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886395 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886490 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3852939 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887022 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887260 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886870 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887102 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887222 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887057 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883538 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3829954 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3840636 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885489 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884810 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883584 | Nivel: ARTISTICA (Pág: 1)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 1. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: SAN ISIDRO ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'SAN ISIDRO'...
+[SCRAPER] Esperando opción 'SAN ISIDRO'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para SAN ISIDRO...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'SAN ISIDRO')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en SAN ISIDRO.
+[SCRAPER] ✓ Distrito SAN ISIDRO procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 100
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3811621 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886773 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870119 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875874 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875516 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876487 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876789 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877197 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878794 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876145 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878163 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878090 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878995 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879149 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881376 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881579 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879459 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879561 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882117 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3820398 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883985 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884756 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869821 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885309 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875977 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870405 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3805834 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3810717 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884233 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3859297 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3859758 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3859163 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877149 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885837 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875607 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886316 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886401 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886483 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886369 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862790 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886590 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886743 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886691 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886693 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887110 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887119 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886599 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886661 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886701 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886976 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887041 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869907 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869943 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3813127 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876328 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886287 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875221 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878112 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882585 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3839432 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869533 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878624 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886807 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877671 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3853743 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870966 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875084 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875741 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875106 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878329 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878476 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878828 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878905 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876847 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878404 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876841 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869590 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885656 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885546 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885932 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875546 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885502 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886356 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882515 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885552 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887007 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886556 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886824 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886948 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887024 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887179 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887063 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3874800 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882682 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887224 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876138 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878432 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878239 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875706 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879274 | Nivel: SECUNDARIA (Pág: 1)
+[SCRAPER] Botón 'Siguiente' habilitado. Navegando a la página 2...
+
+[SCRAPER] --- Extrayendo Página 2 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 2: 31
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879296 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878062 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882421 | Nivel: TECNICO PROFESIONAL (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884507 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885138 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3859166 | Nivel: ADULTOS Y CENS (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876928 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885747 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885981 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886502 | Nivel: EDUCACION FISICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886311 | Nivel: TECNICO PROFESIONAL (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886799 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879536 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876598 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876696 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886830 | Nivel: TECNICO PROFESIONAL (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877965 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887306 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887380 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3846635 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883776 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886106 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885646 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886600 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886629 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887305 | Nivel: TECNICO PROFESIONAL (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887218 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886929 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887328 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882328 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885760 | Nivel: SECUNDARIA (Pág: 2)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 2. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: V LOPEZ ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'V LOPEZ'...
+[SCRAPER] Esperando opción 'V LOPEZ'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para V LOPEZ...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'VICENTE LOPEZ')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en V LOPEZ.
+[SCRAPER] ✓ Distrito V LOPEZ procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 53
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3830065 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878816 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879716 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879745 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879774 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879426 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3836414 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3857372 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3857673 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884723 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884746 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884803 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885702 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3843474 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3818247 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879816 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3857261 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885908 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886088 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884605 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870346 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876809 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3867331 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886704 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883928 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886625 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884950 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883987 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884984 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886030 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887439 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887523 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887535 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875098 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875214 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887362 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887504 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884914 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885218 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885560 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885944 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886851 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887468 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885978 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885993 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884152 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884833 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885323 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3852947 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3852900 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3855966 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886494 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3849688 | Nivel: SECUNDARIA (Pág: 1)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 1. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: T DE FEBRERO ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'T DE FEBRERO'...
+[SCRAPER] Esperando opción 'T DE FEBRERO'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para T DE FEBRERO...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'TRES DE FEBRERO')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en T DE FEBRERO.
+[SCRAPER] ✓ Distrito T DE FEBRERO procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 81
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876816 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884135 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884578 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884776 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883136 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883147 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884202 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883115 | Nivel: INICIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884106 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884160 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884185 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884209 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884248 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884887 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886550 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882443 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882466 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886310 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880948 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858316 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875810 | Nivel: BIBLIOTECARIO NIVEL INICIAL (/BJ) (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887279 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880938 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3842365 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3863151 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882396 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878594 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886355 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882487 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886388 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886412 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3840619 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858282 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882526 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886669 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887495 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887506 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886423 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882500 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3842861 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876675 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884974 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886234 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887207 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887267 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885018 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887332 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882571 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886280 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858472 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882703 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882711 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882596 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882533 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880906 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884217 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884247 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884317 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884517 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884839 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884948 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879083 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3851653 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3832062 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3855629 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3853350 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3820983 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3820728 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886513 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886922 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887005 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887019 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887038 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887050 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887059 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887071 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887486 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887525 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886779 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886803 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886822 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 1. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: QUILMES ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'QUILMES'...
+[SCRAPER] Esperando opción 'QUILMES'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para QUILMES...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'QUILMES')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en QUILMES.
+[SCRAPER] ✓ Distrito QUILMES procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 92
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880433 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880311 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880337 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880431 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880341 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880708 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880637 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882869 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882881 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882883 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882884 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882873 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882844 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882829 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882832 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882838 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882839 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882843 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882846 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882850 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882878 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882880 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882882 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882854 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882857 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884256 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882529 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882887 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882564 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885740 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885870 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885922 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882477 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882860 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882177 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880744 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882166 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880356 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880586 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880391 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880394 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885963 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880456 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881769 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880315 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880400 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882861 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882307 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880426 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881907 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880428 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882389 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880440 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880457 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880460 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882365 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880320 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880421 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880463 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882139 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880461 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882091 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885812 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880447 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880398 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880458 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880437 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3866702 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880407 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880359 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881872 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880424 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880418 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: FORTE | IGE: 3880323 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880441 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882029 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882395 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880348 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880815 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880435 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880346 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880390 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880395 | Nivel: SUPERIOR (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880444 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880352 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880439 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880462 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882877 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882329 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882849 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882879 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880459 | Nivel: SECUNDARIA (Pág: 1)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 1. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: LANUS ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'LANUS'...
+[SCRAPER] Esperando opción 'LANUS'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para LANUS...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'LANUS')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en LANUS.
+[SCRAPER] ✓ Distrito LANUS procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 100
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887180 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887221 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887258 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887400 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887428 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887458 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883168 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883445 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883728 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883984 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887533 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3848657 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869083 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883642 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883687 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883750 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883090 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883119 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883817 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883893 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884274 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884304 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884536 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884560 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883899 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884053 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884192 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884340 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884393 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884434 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884506 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884561 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884618 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885336 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884029 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884116 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884417 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884629 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3850523 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884574 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884730 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884786 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3864662 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884853 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884896 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3842317 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885395 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885433 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885472 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885520 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885561 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885641 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885691 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885731 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885772 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885860 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885871 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885949 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885951 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886016 | Nivel: INICIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885605 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885689 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886084 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3818975 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886046 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886211 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886269 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886416 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3886576 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886003 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886086 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3874985 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886497 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886623 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3827534 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3886638 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3886732 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886963 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887001 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3886825 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3886866 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3886944 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887023 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887072 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887188 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887210 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887153 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887379 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887333 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3873628 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3873627 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3863689 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883841 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887111 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883800 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884163 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884210 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3863400 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869410 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878979 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+[SCRAPER] Botón 'Siguiente' habilitado. Navegando a la página 2...
+
+[SCRAPER] --- Extrayendo Página 2 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 2: 24
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884882 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885205 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885236 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884448 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884769 | Nivel: ADULTOS Y CENS (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883847 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883933 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883980 | Nivel: TECNICO PROFESIONAL (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884336 | Nivel: TECNICO PROFESIONAL (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: FORTE | IGE: 3884380 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884595 | Nivel: TECNICO PROFESIONAL (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884671 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885654 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884431 | Nivel: PSICOLOGIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884961 | Nivel: PSICOLOGIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886020 | Nivel: PSICOLOGIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886089 | Nivel: PSICOLOGIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885895 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886199 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886434 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887011 | Nivel: ADULTOS Y CENS (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: Fines | IGE: 3887073 | Nivel: ADULTOS Y CENS (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3879086 | Nivel: TECNICO PROFESIONAL (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886787 | Nivel: SECUNDARIA (Pág: 2)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 2. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: AVELLANEDA ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'AVELLANEDA'...
+[SCRAPER] Esperando opción 'AVELLANEDA'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para AVELLANEDA...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'AVELLANEDA')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en AVELLANEDA.
+[SCRAPER] ✓ Distrito AVELLANEDA procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 39
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886155 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886203 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3842582 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3836994 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3836940 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3823514 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876201 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3813613 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3813620 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3846679 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886329 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886364 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886509 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886180 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886277 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878475 | Nivel: ESPECIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886602 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886549 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887037 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886637 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886849 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887211 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887270 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886237 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886756 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: FORTE | IGE: 3886720 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886885 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886411 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886459 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886681 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886797 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886982 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887089 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887145 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887422 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887441 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887168 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887237 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887395 | Nivel: SECUNDARIA (Pág: 1)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 1. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: BERAZATEGUI ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'BERAZATEGUI'...
+[SCRAPER] Esperando opción 'BERAZATEGUI'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para BERAZATEGUI...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'BERAZATEGUI')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en BERAZATEGUI.
+[SCRAPER] ✓ Distrito BERAZATEGUI procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 64
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881565 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881759 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881144 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881305 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881315 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881599 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881682 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881017 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881982 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882113 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882292 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881832 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881956 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881222 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881846 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881705 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882048 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886177 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886220 | Nivel: PSICOLOGIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885955 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886085 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886132 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881188 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881252 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883926 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3883950 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884358 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884378 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884424 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884447 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884462 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884499 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884516 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884537 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886034 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884549 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884565 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884603 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884620 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884876 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886570 | Nivel: EDUCACION FISICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887189 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887240 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885813 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885629 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886913 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884589 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886880 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886532 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886832 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886940 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887390 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887412 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887536 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886468 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887309 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887341 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885140 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885155 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885849 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887359 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887375 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886760 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886968 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+[SCRAPER] No se detectó paginación o botón Siguiente en la página 1. Fin de extracciones.
+[NAV] Reseteando: volviendo al Dashboard APD...
+
+[MODAL] Revisando / Limpiando pop-ups modales activos...
+[MODAL] Intentando cerrar modales con la tecla Escape...
+[MODAL] Simulando clic en el fondo de la pantalla (0,0)...
+[MODAL] Limpieza de modales completada u omitida.
+[NAV] Nueva pestaña de ofertas: https://misaplicaciones5.abc.gob.ar/postulacionAPD/ofertas
+
+--- Procesando Distrito: TIGRE ---
+[SCRAPER] Abriendo modal de Distrito...
+[SCRAPER] Limpiando input y tipeando 'TIGRE'...
+[SCRAPER] Esperando opción 'TIGRE'...
+[SCRAPER] Presionando Buscar en el modal...
+[SCRAPER] Esperando que desaparezcan indicadores de carga para TIGRE...
+[SCRAPER] Modal cerrado, esperando 3s para estabilidad del DOM...
+[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...
+[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica 'TIGRE')
+[SCRAPER] ✓ Se detectaron tarjetas de oferta en TIGRE.
+[SCRAPER] ✓ Distrito TIGRE procesado. Iniciando extracción de datos...
+
+[SCRAPER] --- Extrayendo Página 1 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 1: 100
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885501 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882181 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885002 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885817 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885842 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886156 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887451 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3878082 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881900 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882026 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3868505 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870900 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3872786 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865553 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862559 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862908 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3864561 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865117 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858249 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858152 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858578 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875642 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3864707 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3864732 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858195 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858206 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858217 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858162 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3857633 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858016 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3858440 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3859062 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862236 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862292 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862409 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862541 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862334 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862576 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3862861 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3863345 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3863786 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3864685 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865656 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865674 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3863426 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3864541 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865578 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865600 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865882 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865893 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3863733 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3854263 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865625 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3868024 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3868044 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3867333 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3867800 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3868345 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870105 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870841 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870476 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870489 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870786 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871872 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871885 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3872986 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3873007 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875665 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875776 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875544 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3875852 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877296 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877307 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877765 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877907 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877923 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880915 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880974 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881325 | Nivel: ADULTOS Y CENS (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3876920 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877610 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877669 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877699 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882367 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882394 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3877283 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3881762 | Nivel: PRIMARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882199 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3882557 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3880893 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884121 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885457 | Nivel: INICIAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885542 | Nivel: TECNICO PROFESIONAL (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884725 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884755 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884804 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887478 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887030 | Nivel: ARTISTICA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886347 | Nivel: SECUNDARIA (Pág: 1)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886475 | Nivel: SECUNDARIA (Pág: 1)
+[SCRAPER] Botón 'Siguiente' habilitado. Navegando a la página 2...
+
+[SCRAPER] --- Extrayendo Página 2 ---
+[SCRAPER] Total bruto de tarjetas extraídas en página 2: 100
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886531 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886910 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3886974 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887381 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884031 | Nivel: ADULTOS Y CENS (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3885906 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884505 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884566 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884582 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3884600 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3887415 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3868002 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869942 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869967 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870002 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871012 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3864157 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3834101 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3865278 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871812 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871823 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3872426 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3853316 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3834055 | Nivel: PSICOLOGIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3867663 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3867971 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3838902 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3868103 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3868257 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870552 | Nivel: SECUNDARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869607 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869626 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869642 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869662 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3869683 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870441 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871218 | Nivel: PRIMARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871313 | Nivel: PSICOLOGIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870457 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3870631 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871382 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871404 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871696 | Nivel: PRIMARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871717 | Nivel: PRIMARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871739 | Nivel: PRIMARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871917 | Nivel: PRIMARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871499 | Nivel: PSICOLOGIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871963 | Nivel: PRIMARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3872070 | Nivel: PRIMARIA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871927 | Nivel: ADULTOS Y CENS (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3872054 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3871967 | Nivel: ADULTOS Y CENS (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3872758 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3872247 | Nivel: ARTISTICA (Pág: 2)
+  -> [EXTRACCIÓN] Tipo de Oferta: DESIGNACIONES DOCENTES | IGE: 3872015 | Nivel: ARTISTICA (Pág: 2)
