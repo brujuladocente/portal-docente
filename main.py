@@ -8,7 +8,7 @@ import json
 import schedule
 from dotenv import load_dotenv
 from scraper import scrape_ofertas
-from database_google import obtener_usuarios_desde_sheets
+from database_google import obtener_usuarios_desde_sheets, normalizar_texto
 from notifier import enviar_correo
 from playwright.sync_api import sync_playwright
 
@@ -96,7 +96,7 @@ def job():
                 ofertas_match = []
                 for oferta in lista_maestra:
                     oferta_id = oferta["id"]
-                    oferta_distrito = oferta["distrito"].upper()
+                    oferta_distrito = normalizar_texto(oferta["distrito"])
                     oferta_codigo = oferta["codigo_area"].upper().strip()
                     
                     # 1. Filtro por Distrito y Materia

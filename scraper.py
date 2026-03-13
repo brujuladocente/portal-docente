@@ -89,7 +89,6 @@ def gestionar_estado_sesion(page: Page):
             try:
                 btn_postularse = page.locator("a, button", has_text=re.compile(r"Postularse", re.IGNORECASE)).locator("visible=true").first
                 
-                # Capturar nueva pestaña ANTES del clic
                 with page.context.expect_page(timeout=10000) as nueva_pagina_info:
                     btn_postularse.click(force=True)
                 
@@ -100,7 +99,6 @@ def gestionar_estado_sesion(page: Page):
                 url_nueva = nueva_pagina.url
                 print(f"[ESTADOS] URL de la nueva pestaña: {url_nueva}")
                 
-                # Cerrar la pestaña original para no confundir al script
                 print("[ESTADOS] Cerrando pestaña original (dashboard)...")
                 page.close()
                 
@@ -110,13 +108,11 @@ def gestionar_estado_sesion(page: Page):
                 else:
                     print(f"[ESTADOS] ⚠ URL inesperada en nueva pestaña: {url_nueva}")
                     intentos += 1
-                    # Reasignamos page para el próximo ciclo
                     page = nueva_pagina
                     continue
                     
             except Exception as e:
                 print(f"[ESTADOS] No se abrió nueva pestaña (quizás misma pestaña): {type(e).__name__}. Verificando URL actual...")
-                # Fallback: clic normal si no hubo nueva pestaña
                 try:
                     btn_postularse = page.locator("a, button", has_text=re.compile(r"Postularse", re.IGNORECASE)).locator("visible=true").first
                     btn_postularse.click(force=True)
@@ -161,11 +157,9 @@ def _navegar_a_ofertas(page: Page) -> Page:
             nueva_pagina.wait_for_load_state("networkidle")
             nueva_pagina.wait_for_timeout(4000)
             print(f"[NAV] Nueva pestaña de ofertas: {nueva_pagina.url}")
-            # Cerrar la pestaña del dashboard para no acumular ventanas
             page.close()
             return nueva_pagina
         except Exception:
-            # Postularse no abrió nueva pestaña: misma pestaña redirigida
             btn.click(force=True)
             page.wait_for_load_state("networkidle")
             page.wait_for_timeout(3000)
@@ -175,220 +169,264 @@ def _navegar_a_ofertas(page: Page) -> Page:
         print(f"[NAV] Error en reseteo seguro: {e}")
         return page
 
+def extraer_todas_paginas(page: Page) -> list:
+    ofertas_extraidas = []
+    pagina_actual = 1
+    intentos_sin_avance = 0
+    MAX_INTENTOS_SIN_AVANCE = 3
+
+    while True:
+        print(f"\n[SCRAPER] --- Extrayendo Página {pagina_actual} ---")
+        try:
+            snapshot_antes = page.locator(".card").first.inner_text() if page.locator(".card").count() > 0 else ""
+        except Exception:
+            snapshot_antes = ""
+
+        tarjetas = page.locator(".card").all()
+        print(f"[SCRAPER] Total bruto de tarjetas extraídas en página {pagina_actual}: {len(tarjetas)}")
+
+        for t in tarjetas:
+            texto_tarjeta = t.inner_text()
+            texto_upper = texto_tarjeta.upper()
+
+            # Buscar código en paréntesis ej (FIA)
+            match_codigo = re.search(r'\(([A-Z0-9\/\+\-]+)\)', texto_upper)
+            codigo_area = match_codigo.group(1).strip() if match_codigo else "DESCONOCIDO"
+
+            # IGE
+            match_ige = re.search(r'#(?:IGE)?\s*(\d+)', texto_upper)
+            if not match_ige:
+                match_ige = re.search(r'IGE\s*:\s*(\d+)', texto_upper)
+            ige = match_ige.group(1) if match_ige else "SinIGE"
+
+            # Distrito: Extraer de "DISTRITO: <valor>" para evitar domicilios
+            match_distrito = re.search(r'DISTRITO\s*:\s*([^\n]+)', texto_upper)
+            distrito_tarjeta = match_distrito.group(1).strip() if match_distrito else "DESCONOCIDO"
+
+            lineas = [line.strip() for line in texto_tarjeta.split('\n') if line.strip()]
+
+            escuela_linea = next((l for l in lineas if 'ESCUELA' in l.upper()), "")
+            escuela = escuela_linea.split(':', 1)[-1].strip() if escuela_linea else "Ver en Portal"
+
+            nivel_linea = next((l for l in lineas if 'NIVEL' in l.upper()), "")
+            nivel = nivel_linea.split(':', 1)[-1].strip() if nivel_linea else "Ver en Portal"
+
+            # Horarios
+            DIAS = ['LUNES', 'MARTES', 'MIÉRCOLES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'SABADO']
+            lineas_horario = [
+                l for l in lineas
+                if any(dia in l.upper() for dia in DIAS)
+            ]
+            horarios = " | ".join(lineas_horario) if lineas_horario else "Ver en Portal"
+
+            # Observaciones
+            match_obs = re.search(r'observaciones\s*:?\s*([^\n]+)', texto_tarjeta, re.IGNORECASE)
+            observaciones = match_obs.group(1).strip() if match_obs and match_obs.group(1).strip() else "-"
+
+            if not observaciones or "POSTULARSE" in observaciones.upper():
+                observaciones = "-"
+
+            print(f"  -> [EXTRACCIÓN] Código: {codigo_area} | IGE: {ige} | Distrito: {distrito_tarjeta} | Nivel: {nivel} (Pág: {pagina_actual})")
+
+            ofertas_extraidas.append({
+                "id": f"IGE_{ige}_{distrito_tarjeta.replace(' ', '_')}",
+                "ige": ige,
+                "codigo_area": codigo_area,
+                "distrito": distrito_tarjeta,
+                "nivel": nivel,
+                "escuela": escuela,
+                "horarios": horarios,
+                "observaciones": observaciones,
+                "texto_completo": texto_tarjeta
+            })
+
+        # PAGINACIÓN
+        try:
+            contenedor_siguiente = page.locator('li.page-item.der').first
+            btn_siguiente = page.locator('li.page-item.der a[aria-label="Next"]').first
+
+            if not contenedor_siguiente.is_visible() or not btn_siguiente.is_visible():
+                print(f"[SCRAPER] No se detectó paginación o botón Siguiente en la página {pagina_actual}. Fin de extracciones.")
+                break
+
+            class_attribute = contenedor_siguiente.get_attribute("class") or ""
+            if "disabled" in class_attribute:
+                print(f"[SCRAPER] Botón 'Siguiente' está deshabilitado en página {pagina_actual}. Llegamos al final.")
+                break
+
+            print(f"[SCRAPER] Botón 'Siguiente' habilitado. Navegando a la página {pagina_actual + 1}...")
+            btn_siguiente.click(force=True)
+            pagina_actual += 1
+
+            page.wait_for_timeout(3000)
+            try:
+                page.wait_for_selector(".card", timeout=10000)
+            except Exception:
+                pass
+
+            # Guardia de movimiento
+            try:
+                snapshot_despues = page.locator(".card").first.inner_text() if page.locator(".card").count() > 0 else ""
+            except Exception:
+                snapshot_despues = ""
+
+            if snapshot_despues and snapshot_despues == snapshot_antes:
+                intentos_sin_avance += 1
+                print(f"[SCRAPER] ⚠ La página NO cambió tras clic en Siguiente (intento {intentos_sin_avance}/{MAX_INTENTOS_SIN_AVANCE}).")
+                if intentos_sin_avance >= MAX_INTENTOS_SIN_AVANCE:
+                    print(f"[SCRAPER] ✋ {MAX_INTENTOS_SIN_AVANCE} intentos sin avance. Forzando salida.")
+                    break
+            else:
+                intentos_sin_avance = 0
+
+        except Exception as eval_err:
+            print(f"[SCRAPER] Error evaluando botón 'Siguiente': {eval_err}. Asumiendo fin del escaneo por esta tanda.")
+            break
+
+    return ofertas_extraidas
+
+
 def scrape_ofertas(page: Page, distritos: list):
     ofertas_encontradas = []
     
-    # 1. Máquina de Estados: retorna la Page activa (posiblemente una nueva pestaña)
     page_activa = gestionar_estado_sesion(page)
-    
     if page_activa is None:
         print("Abortando extracción de ofertas por fallo en la sesión/navegación.")
         return []
     
-    # Usar siempre la page activa de aquí en adelante
     page = page_activa
     print(f"[SCRAPER] URL activa para scraping: {page.url}")
 
-    # Verificar que el título de la sección es el correcto
     try:
         page.wait_for_selector("text='Para Desempe'", timeout=5000)
         print("[SCRAPER] ✓ Título de la sección de postulaciones confirmado.")
     except Exception:
         print("[SCRAPER] Advertencia: título de la sección no detectado (continuando de todas formas).")
 
-    # 3 y 4. Filtro por Distrito e Iteración (ya estamos en el panel de Postularse)
+    modo_barrido_total = False
+    fallos_filtro = 0
+
     for distrito in distritos:
+        if modo_barrido_total:
+            # Si estamos en barrido total, no iteramos por distritos, rompemos el ciclo
+            break
+
         print(f"\n--- Procesando Distrito: {distrito} ---")
+        exito_filtro = False
+        
         try:
-            # === ABRIR MODAL DE DISTRITO - Selector definitivo confirmado manualmente ===
-            print("[SCRAPER] Abriendo modal de Distrito (selector: div.filtro > Distrito > button)...")
+            print("[SCRAPER] Abriendo modal de Distrito...")
             boton_distrito = page.locator("div.filtro", has_text="Distrito").locator("button")
             boton_distrito.scroll_into_view_if_needed()
             boton_distrito.click(force=True)
-            print("[SCRAPER] Clic en botón de Distrito ejecutado.")
             
-            # Esperar al input del modal
             page.wait_for_selector("input[role='combobox']", state="visible", timeout=10000)
-            print("[SCRAPER] ✓ Modal de Distrito abierto. Combobox detectado.")
-            
-            # Tipeo carácter a carácter para que Angular dispare los eventos
-            print(f"[SCRAPER] Tipeando '{distrito}' con delay=150ms (page.type)...")
+            print(f"[SCRAPER] Tipeando '{distrito}'...")
             page.type("input[role='combobox']", distrito, delay=150)
             page.wait_for_timeout(1500)
             
-            # Espera y clic en la opción del dropdown ng-select
-            print(f"[SCRAPER] Esperando span.ng-option-label con texto '{distrito}'...")
+            # Chequear preventivamente si dice "No items found"
+            dropdown_panel = page.locator("ng-dropdown-panel")
+            if dropdown_panel.is_visible():
+                panel_texto = dropdown_panel.inner_text().lower()
+                if "no items found" in panel_texto or "no se encontraron" in panel_texto:
+                    raise Exception("Dropdown muestra 'No items found'")
+            
+            print(f"[SCRAPER] Esperando opción '{distrito}'...")
             opcion = page.locator("span.ng-option-label", has_text=distrito)
-            opcion.wait_for(state="visible", timeout=10000)
+            opcion.wait_for(state="visible", timeout=6000)
             page.screenshot(path="debug_filtro.png")
-            print("[SCRAPER] Screenshot guardado: debug_filtro.png")
             opcion.first.click()
-            # Confirmación de selección en Angular
             page.wait_for_timeout(1500)
             
-            # Clic en Buscar dentro del footer del modal
-            print("[SCRAPER] Presionando Buscar en el footer del modal...")
+            print("[SCRAPER] Presionando Buscar en el modal...")
             btn_buscar = page.locator(".modal-footer button", has_text=re.compile(r"Buscar", re.IGNORECASE))
             btn_buscar.wait_for(state="visible", timeout=10000)
             btn_buscar.click(force=True)
+            # --- PROTECCIÓN CONTRA RACE CONDITION ---
             
-            # Espera de estabilidad post-clic para el portal
-            print("[SCRAPER] Espera de estabilidad (2s) para que inicie la búsqueda...")
-            page.wait_for_timeout(2000)
-            
-            print("[SCRAPER] Esperando que los resultados se actualicen en pantalla...")
-            page.wait_for_load_state("networkidle")
+            # 1. Esperar obligatoriamente la desaparición de spinners/loaders antes de chequear el DOM
             try:
-                page.wait_for_selector(".card", timeout=12000)
-            except Exception:
-                print(f"[SCRAPER] No se encontraron tarjetas (.card) de inmediato para {distrito}.")
-            page.wait_for_timeout(3000)
-            
-            match_count = 0
-            pagina_actual = 1
-            intentos_sin_avance = 0
-            MAX_INTENTOS_SIN_AVANCE = 3
-
-            # === GUARDIA 1: Distrito sin resultados (Doble Chequeo) ===
-            try:
-                texto_pagina = page.inner_text("body")
-                if "0 registros encontrados" in texto_pagina.lower():
-                    print(f"[SCRAPER] ⚠ Detectado '0 registros'. Esperando 2s para confirmación (Doble Chequeo)...")
-                    page.wait_for_timeout(2000)
-                    texto_pagina_doble = page.inner_text("body")
-                    if "0 registros encontrados" in texto_pagina_doble.lower():
-                        print(f"[SCRAPER] 🛑 Confirmado: Distrito {distrito} tiene 0 registros reales. Saltando al siguiente.")
-                        page = _navegar_a_ofertas(page)
-                        continue
-                    else:
-                        print(f"[SCRAPER] 🟢 Falso positivo evitado. Los registros de {distrito} terminaron de cargar.")
+                print(f"[SCRAPER] Esperando que desaparezcan indicadores de carga para {distrito}...")
+                page.locator(".spinner-border, .loader, [role='status'], text='Cargando'").locator("visible=true").first.wait_for(state="hidden", timeout=15000)
             except Exception:
                 pass
+                
+            # 2. Verificación por Contenido (Esperar por tarjetas o el mensaje de '0 registros')
+            print(f"[SCRAPER] Esperando resolución del DOM (tarjetas o mensaje de cero)...")
+            try:
+                page.wait_for_function(
+                    "() => document.querySelectorAll('.card').length > 0 || document.body.innerText.toLowerCase().includes('0 registros encontrados') || document.body.innerText.toLowerCase().includes('no se encontraron resultados')",
+                    timeout=10000
+                )
+            except Exception:
+                print("[SCRAPER] ⏱ Timeout de 10s esperando un estado definitivo en el DOM. Podría estar lento...")
 
-            while True:
-                print(f"\n[SCRAPER] --- Extrayendo Página {pagina_actual} de {distrito} ---")
-
-                # Capturamos snapshot ANTES de extraer (para validar movimiento tras clic)
-                try:
-                    snapshot_antes = page.locator(".card").first.inner_text() if page.locator(".card").count() > 0 else ""
-                except Exception:
-                    snapshot_antes = ""
-
-                # --- PASO 6: Extracción de Tarjetas ---
-                tarjetas = page.locator(".card").all()
-                print(f"[SCRAPER] Total bruto de tarjetas extraídas en página {pagina_actual}: {len(tarjetas)}")
-
-                for t in tarjetas:
-                    texto_tarjeta = t.inner_text()
-                    texto_upper = texto_tarjeta.upper()
-
-                    # Buscar código en paréntesis ej (FIA)
-                    match_codigo = re.search(r'\(([A-Z0-9\/\+\-]+)\)', texto_upper)
-                    codigo_area = match_codigo.group(1).strip() if match_codigo else "DESCONOCIDO"
-
-                    # 6. Eliminado filtro de códigos, recolectamos todo (Lista Maestra)
-
-                    # --- Extracción de campos ---
-                    match_ige = re.search(r'#(?:IGE)?\s*(\d+)', texto_upper)
-                    if not match_ige:
-                        match_ige = re.search(r'IGE\s*:\s*(\d+)', texto_upper)
-                    ige = match_ige.group(1) if match_ige else "SinIGE"
-
-                    lineas = [line.strip() for line in texto_tarjeta.split('\n') if line.strip()]
-
-                    escuela_linea = next((l for l in lineas if 'ESCUELA' in l.upper()), "")
-                    escuela = escuela_linea.split(':', 1)[-1].strip() if escuela_linea else "Ver en Portal"
-
-                    nivel_linea = next((l for l in lineas if 'NIVEL' in l.upper()), "")
-                    nivel = nivel_linea.split(':', 1)[-1].strip() if nivel_linea else "Ver en Portal"
-
-                    # Horarios: capturar líneas que contengan un día de la semana
-                    DIAS = ['LUNES', 'MARTES', 'MIÉRCOLES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'SABADO']
-                    lineas_horario = [
-                        l for l in lineas
-                        if any(dia in l.upper() for dia in DIAS)
-                    ]
-                    horarios = " | ".join(lineas_horario) if lineas_horario else "Ver en Portal"
-
-                    # Observaciones: texto tras la etiqueta 'Observaciones:'
-                    match_obs = re.search(r'observaciones\s*:?\s*([^\n]+)', texto_tarjeta, re.IGNORECASE)
-                    observaciones = match_obs.group(1).strip() if match_obs and match_obs.group(1).strip() else "-"
-
-                    if not observaciones or "POSTULARSE" in observaciones.upper():
-                        observaciones = "-"
-
-                    match_count += 1
-                    print(f"  -> [MATCH CRÍTICO] Código: {codigo_area} | IGE: {ige} | Distrito: {distrito} | Nivel: {nivel} (Pág: {pagina_actual})")
-
-                    ofertas_encontradas.append({
-                        "id": f"IGE_{ige}_{distrito}",
-                        "ige": ige,
-                        "codigo_area": codigo_area,
-                        "distrito": distrito,
-                        "nivel": nivel,
-                        "escuela": escuela,
-                        "horarios": horarios,
-                        "observaciones": observaciones,
-                        "texto_completo": texto_tarjeta
-                    })
-
-                # PAGINACIÓN: Verificar si hay botón 'Siguiente' disponible
-                try:
-                    contenedor_siguiente = page.locator('li.page-item.der').first
-                    btn_siguiente = page.locator('li.page-item.der a[aria-label="Next"]').first
-
-                    # Comprobamos si el componente de paginación existe en el DOM
-                    if not contenedor_siguiente.is_visible() or not btn_siguiente.is_visible():
-                        print(f"[SCRAPER] No se detectó paginación o botón Siguiente en la página {pagina_actual}. Fin del distrito.")
-                        break
-
-                    # Comprobamos la clase disabled en el contenedor li
-                    class_attribute = contenedor_siguiente.get_attribute("class") or ""
-                    if "disabled" in class_attribute:
-                        print(f"[SCRAPER] Botón 'Siguiente' está deshabilitado en página {pagina_actual}. Llegamos al final.")
-                        break
-
-                    print(f"[SCRAPER] Botón 'Siguiente' habilitado. Navegando a la página {pagina_actual + 1}...")
-                    btn_siguiente.click(force=True)
-                    pagina_actual += 1
-
-                    # Espera Activa Post-Clic a que la tabla/tarjetas se refresquen
-                    page.wait_for_timeout(3000)
-                    try:
-                        page.wait_for_selector(".card", timeout=10000)
-                    except Exception:
-                        pass
-
-                    # === GUARDIA 2: Validación de Movimiento ===
-                    # Comparamos la primera tarjeta actual con la que teníamos antes del clic
-                    try:
-                        snapshot_despues = page.locator(".card").first.inner_text() if page.locator(".card").count() > 0 else ""
-                    except Exception:
-                        snapshot_despues = ""
-
-                    if snapshot_despues and snapshot_despues == snapshot_antes:
-                        intentos_sin_avance += 1
-                        print(f"[SCRAPER] ⚠ La página NO cambió tras clic en Siguiente (intento {intentos_sin_avance}/{MAX_INTENTOS_SIN_AVANCE}).")
-                        # === GUARDIA 3: Timeout de Seguridad ===
-                        if intentos_sin_avance >= MAX_INTENTOS_SIN_AVANCE:
-                            print(f"[SCRAPER] ✋ {MAX_INTENTOS_SIN_AVANCE} intentos sin avance. Forzando salida de {distrito}.")
-                            break
-                    else:
-                        # La página sí cambió: reiniciamos el contador de estancamiento
-                        intentos_sin_avance = 0
-
-                except Exception as eval_err:
-                    print(f"[SCRAPER] Error evaluando botón 'Siguiente': {eval_err}. Asumiendo fin de distrito.")
-                    break
+            page.wait_for_load_state("networkidle", timeout=5000)
             
-            print(f"[SCRAPER] Fin ciclo {distrito} - Extracciones útiles para enviar: {match_count}")
-            
-            # --- RESETEO SEGURO entre distritos: volver al dashboard y reabrir Postularse ---
-            page = _navegar_a_ofertas(page)
+            exito_filtro = True
 
         except Exception as e:
-            print(f"[SCRAPER] Error procesando distrito {distrito}: {e}")
+            print(f"[SCRAPER] ⚠ Falla al administrar el modal de distritos {distrito}: {e}")
+            exito_filtro = False
+
+        if not exito_filtro:
+            fallos_filtro += 1
+            print(f"[SCRAPER] ⚠ Detectado fallo en carga de {distrito} (Intento {fallos_filtro}/2). Refrescando vista pacientemente...")
+            # Refrescar la vista a ver si soluciona el problema de Angular
             page = _navegar_a_ofertas(page)
+            
+            if fallos_filtro >= 2:
+                print("⚠️ Carga de distritos fallida reiteradamente. Iniciando escaneo manual de páginas para garantizar resultados")
+                modo_barrido_total = True
+                break
             continue
 
+        # --- GUARDIA MEJORADA CON PRIORIDAD Y RETARDO EXTENDIDO ---
+        try:
+            texto_pagina = page.inner_text("body").lower()
+            hay_cero = "0 registros encontrados" in texto_pagina or "no se encontraron resultados" in texto_pagina
+            hay_tarjetas = page.locator(".card").count() > 0
+
+            # 3. Prioridad a las Ofertas
+            if hay_tarjetas:
+                print(f"[SCRAPER] ✓ Se detectaron tarjetas de oferta en {distrito}.")
+            elif hay_cero:
+                # 4. Aumentar Doble Chequeo a 5s
+                print(f"[SCRAPER] ⚠ Detectado '0 registros' sin tarjetas. Esperando 5s térmicos para confirmación (Doble Chequeo)...")
+                page.wait_for_timeout(5000)
+                
+                texto_pagina_2 = page.inner_text("body").lower()
+                hay_tarjetas_2 = page.locator(".card").count() > 0
+                hay_cero_2 = "0 registros encontrados" in texto_pagina_2 or "no se encontraron resultados" in texto_pagina_2
+
+                if hay_tarjetas_2:
+                    print(f"[SCRAPER] 🟢 Falso positivo evitado (Doble Chequeo). Las tarjetas de {distrito} terminaron de cargar en el fondo.")
+                elif hay_cero_2:
+                    print(f"[SCRAPER] 🛑 Confirmado: Distrito {distrito} tiene 0 registros reales (comprobado). Saltando al siguiente.")
+                    page = _navegar_a_ofertas(page)
+                    continue
+                else:
+                    print(f"[SCRAPER] 🟢 Estado incierto pero asumimos que carga ofertas ocultas.")
+        except Exception as e:
+            print(f"[SCRAPER] Error durante la guardia de 0 registros: {e}")
+
+        print(f"[SCRAPER] ✓ Distrito {distrito} procesado. Iniciando extracción de datos...")
+        ofertas_distrito = extraer_todas_paginas(page)
+        ofertas_encontradas.extend(ofertas_distrito)
+        
+        # Reset para el siguiente distrito
+        page = _navegar_a_ofertas(page)
+
+    if modo_barrido_total:
+        print("\n[BARRIDO TOTAL] Extrayendo TODAS las ofertas sin aplicar filtros en portal...")
+        ofertas_barrido = extraer_todas_paginas(page)
+        
+        # Merge para evitar duplicados en caso de que algún distrito haya sido exitoso antes de fallar
+        ids_existentes = {o['id'] for o in ofertas_encontradas}
+        for o in ofertas_barrido:
+            if o['id'] not in ids_existentes:
+                ofertas_encontradas.append(o)
+
+    print(f"[SCRAPER] Fin total. Extracciones útiles enviadas a orquestador: {len(ofertas_encontradas)}")
     return ofertas_encontradas
