@@ -178,67 +178,74 @@ def extraer_todas_paginas(page: Page) -> list:
     while True:
         print(f"\n[SCRAPER] --- Extrayendo Página {pagina_actual} ---")
         try:
-            snapshot_antes = page.locator(".card").first.inner_text() if page.locator(".card").count() > 0 else ""
+            snapshot_antes = page.locator(".card").first.text_content() if page.locator(".card").count() > 0 else ""
         except Exception:
             snapshot_antes = ""
 
         tarjetas = page.locator(".card").all()
         print(f"[SCRAPER] Total bruto de tarjetas extraídas en página {pagina_actual}: {len(tarjetas)}")
 
-        for t in tarjetas:
-            texto_tarjeta = t.inner_text()
-            texto_upper = texto_tarjeta.upper()
+        for i, t in enumerate(tarjetas):
+            try:
+                texto_tarjeta = t.text_content()
+                if not texto_tarjeta:
+                    continue
+                    
+                texto_upper = texto_tarjeta.upper()
 
-            # Buscar código en paréntesis ej (FIA)
-            match_codigo = re.search(r'\(([A-Z0-9\/\+\-]+)\)', texto_upper)
-            codigo_area = match_codigo.group(1).strip() if match_codigo else "DESCONOCIDO"
+                # Buscar código en paréntesis ej (FIA)
+                match_codigo = re.search(r'\(([A-Z0-9\/\+\-]+)\)', texto_upper)
+                codigo_area = match_codigo.group(1).strip() if match_codigo else "DESCONOCIDO"
 
-            # IGE
-            match_ige = re.search(r'#(?:IGE)?\s*(\d+)', texto_upper)
-            if not match_ige:
-                match_ige = re.search(r'IGE\s*:\s*(\d+)', texto_upper)
-            ige = match_ige.group(1) if match_ige else "SinIGE"
+                # IGE
+                match_ige = re.search(r'#(?:IGE)?\s*(\d+)', texto_upper)
+                if not match_ige:
+                    match_ige = re.search(r'IGE\s*:\s*(\d+)', texto_upper)
+                ige = match_ige.group(1) if match_ige else "SinIGE"
 
-            # Distrito: Extraer de "DISTRITO: <valor>" para evitar domicilios
-            match_distrito = re.search(r'DISTRITO\s*:\s*([^\n]+)', texto_upper)
-            distrito_tarjeta = match_distrito.group(1).strip() if match_distrito else "DESCONOCIDO"
+                # Distrito: Extraer de "DISTRITO: <valor>" para evitar domicilios
+                match_distrito = re.search(r'DISTRITO\s*:\s*([^\n]+)', texto_upper)
+                distrito_tarjeta = match_distrito.group(1).strip() if match_distrito else "DESCONOCIDO"
 
-            lineas = [line.strip() for line in texto_tarjeta.split('\n') if line.strip()]
+                lineas = [line.strip() for line in texto_tarjeta.split('\n') if line.strip()]
 
-            escuela_linea = next((l for l in lineas if 'ESCUELA' in l.upper()), "")
-            escuela = escuela_linea.split(':', 1)[-1].strip() if escuela_linea else "Ver en Portal"
+                escuela_linea = next((l for l in lineas if 'ESCUELA' in l.upper()), "")
+                escuela = escuela_linea.split(':', 1)[-1].strip() if escuela_linea else "Ver en Portal"
 
-            nivel_linea = next((l for l in lineas if 'NIVEL' in l.upper()), "")
-            nivel = nivel_linea.split(':', 1)[-1].strip() if nivel_linea else "Ver en Portal"
+                nivel_linea = next((l for l in lineas if 'NIVEL' in l.upper()), "")
+                nivel = nivel_linea.split(':', 1)[-1].strip() if nivel_linea else "Ver en Portal"
 
-            # Horarios
-            DIAS = ['LUNES', 'MARTES', 'MIÉRCOLES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'SABADO']
-            lineas_horario = [
-                l for l in lineas
-                if any(dia in l.upper() for dia in DIAS)
-            ]
-            horarios = " | ".join(lineas_horario) if lineas_horario else "Ver en Portal"
+                # Horarios
+                DIAS = ['LUNES', 'MARTES', 'MIÉRCOLES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'SABADO']
+                lineas_horario = [
+                    l for l in lineas
+                    if any(dia in l.upper() for dia in DIAS)
+                ]
+                horarios = " | ".join(lineas_horario) if lineas_horario else "Ver en Portal"
 
-            # Observaciones
-            match_obs = re.search(r'observaciones\s*:?\s*([^\n]+)', texto_tarjeta, re.IGNORECASE)
-            observaciones = match_obs.group(1).strip() if match_obs and match_obs.group(1).strip() else "-"
+                # Observaciones
+                match_obs = re.search(r'observaciones\s*:?\s*([^\n]+)', texto_tarjeta, re.IGNORECASE)
+                observaciones = match_obs.group(1).strip() if match_obs and match_obs.group(1).strip() else "-"
 
-            if not observaciones or "POSTULARSE" in observaciones.upper():
-                observaciones = "-"
+                if not observaciones or "POSTULARSE" in observaciones.upper():
+                    observaciones = "-"
 
-            print(f"  -> [EXTRACCIÓN] Código: {codigo_area} | IGE: {ige} | Distrito: {distrito_tarjeta} | Nivel: {nivel} (Pág: {pagina_actual})")
+                print(f"  -> [EXTRACCIÓN] Código: {codigo_area} | IGE: {ige} | Distrito: {distrito_tarjeta} | Nivel: {nivel} (Pág: {pagina_actual})")
 
-            ofertas_extraidas.append({
-                "id": f"IGE_{ige}_{distrito_tarjeta.replace(' ', '_')}",
-                "ige": ige,
-                "codigo_area": codigo_area,
-                "distrito": distrito_tarjeta,
-                "nivel": nivel,
-                "escuela": escuela,
-                "horarios": horarios,
-                "observaciones": observaciones,
-                "texto_completo": texto_tarjeta
-            })
+                ofertas_extraidas.append({
+                    "id": f"IGE_{ige}_{distrito_tarjeta.replace(' ', '_')}",
+                    "ige": ige,
+                    "codigo_area": codigo_area,
+                    "distrito": distrito_tarjeta,
+                    "nivel": nivel,
+                    "escuela": escuela,
+                    "horarios": horarios,
+                    "observaciones": observaciones,
+                    "texto_completo": texto_tarjeta
+                })
+            except Exception as loop_e:
+                print(f"  -> [ERROR] Fallo al procesar la tarjeta índice {i} ({loop_e}). Saltando...")
+                continue
 
         # PAGINACIÓN
         try:
@@ -266,7 +273,7 @@ def extraer_todas_paginas(page: Page) -> list:
 
             # Guardia de movimiento
             try:
-                snapshot_despues = page.locator(".card").first.inner_text() if page.locator(".card").count() > 0 else ""
+                snapshot_despues = page.locator(".card").first.text_content() if page.locator(".card").count() > 0 else ""
             except Exception:
                 snapshot_despues = ""
 
@@ -321,7 +328,8 @@ def scrape_ofertas(page: Page, distritos: list):
             boton_distrito.click(force=True)
             
             page.wait_for_selector("input[role='combobox']", state="visible", timeout=10000)
-            print(f"[SCRAPER] Tipeando '{distrito}'...")
+            print(f"[SCRAPER] Limpiando input y tipeando '{distrito}'...")
+            page.locator("input[role='combobox']").clear()
             page.type("input[role='combobox']", distrito, delay=150)
             page.wait_for_timeout(1500)
             
@@ -364,6 +372,31 @@ def scrape_ofertas(page: Page, distritos: list):
 
             page.wait_for_load_state("networkidle", timeout=5000)
             
+            # --- VALIDACIÓN DEL FILTRO DE DISTRITO ---
+            if page.locator(".card").count() > 0:
+                try:
+                    primera_tarjeta_texto = page.locator(".card").first.text_content().upper()
+                    match_distrito_check = re.search(r'DISTRITO\s*:\s*([^\n]+)', primera_tarjeta_texto)
+                    if match_distrito_check:
+                        distrito_leido = match_distrito_check.group(1).strip().upper()
+                        # Normalizar comparaciones sencillas (quitar acentos básicos)
+                        import unicodedata
+                        def unidecode_str(s):
+                            return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+                        
+                        dist_leido_norm = unidecode_str(distrito_leido)
+                        dist_buscado_norm = unidecode_str(distrito.upper())
+                        
+                        if dist_buscado_norm not in dist_leido_norm and dist_leido_norm not in dist_buscado_norm:
+                            print(f"[SCRAPER] ❌ ERROR DE FILTRO EN PORTAL: Buscábamos '{distrito}', pero vimos tarjetas de '{distrito_leido}'.")
+                            raise Exception("Portal ignoró el filtro de búsqueda de distrito")
+                        else:
+                            print(f"[SCRAPER] ✓ Validación de filtro correcta (Tarjeta indica '{distrito_leido}')")
+                except Exception as e_val:
+                    if "Portal ignoró" in str(e_val):
+                        raise e_val
+                    print(f"[SCRAPER] Advertencia durante validación cruzada del filtro: {e_val}")
+                    
             exito_filtro = True
 
         except Exception as e:
