@@ -218,6 +218,16 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
+        .card-5 {
+            background-color: var(--card3-bg);
+            color: var(--card3-text);
+        }
+
+        .card-5 .card-desc {
+            color: var(--card3-text-light);
+            font-weight: 600;
+        }
+
         .card-title {
             font-size: 24px;
             margin: 0 0 15px 0;
@@ -546,6 +556,72 @@
         }
         .chevron { transition: transform 0.4s ease; transform-origin: center; display: inline-block; }
         details.help-accordion[open] .chevron { transform: rotate(180deg); }
+
+        /* Diccionario - Resultados y Textos Largos */
+        .materia-item {
+            background: #f8fcff;
+            border-left: 4px solid #006ee9;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            gap: 10px;
+        }
+
+        .materia-text {
+            flex: 1;
+            margin-right: 15px;
+            min-width: 0;
+        }
+
+        .materia-codigo {
+            display: block;
+            font-size: 11px;
+            color: #6f9ac8;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .materia-nombre {
+            color: #1937b0;
+            font-size: 14px;
+            line-height: 1.4;
+            display: block;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .materia-btn {
+            background: #006ee9;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        @media screen and (max-width: 500px) {
+            .materia-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .materia-text {
+                margin-right: 0;
+                width: 100%;
+            }
+            .materia-btn {
+                align-self: flex-start;
+            }
+        }
     </style>
 </head>
 
@@ -599,6 +675,12 @@
                     <h3 class="card-title">Buscador<br>de Escuelas</h3>
                     <p class="card-desc">Filtrá y encontrá la ubicación y contacto de cualquier escuela de la Provincia.
                     </p>
+                </div>
+
+                <!-- Tarjeta 5: Diccionario de Materias -->
+                <div class="card card-5" onclick="openMateriasModal()">
+                    <h3 class="card-title">DICCIONARIO<br>Y TÍTULOS</h3>
+                    <p class="card-desc">Encontrá el código de cualquier materia del ABC en segundos.</p>
                 </div>
             </div>
         </div>
@@ -1133,7 +1215,137 @@
         </div>
     </div>
 
+    <!-- MODAL 6: Diccionario de Materias -->
+    <div class="modal-overlay" id="modalMaterias">
+        <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
+            <button class="close-btn" onclick="closeModal('modalMaterias')">×</button>
+            <h2 style="margin-top:0; color: #1937b0;">Diccionario y Títulos</h2>
+            <p style="color: #6f9ac8; font-size:14px; margin-bottom: 24px; line-height: 1.5;">
+                Buscá tu materia por nombre o código para usarla en las alertas.
+            </p>
+
+            <!-- SECCIÓN B: Guía '¿Qué puedo dar?' -->
+            <details class="help-accordion" style="background:#fefca6; border:1px solid #c0d4e8; border-radius:12px; margin-bottom:24px; box-shadow:0 2px 4px rgba(0,0,0,0.02); overflow:hidden;">
+                <summary style="padding:15px 20px; color:#1739aa; font-family:'Archivo Black', sans-serif; font-size:14px; text-transform:uppercase; cursor:pointer; font-weight:900; word-break: break-word; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:flex; align-items:center; gap:8px;">
+                        <span style="font-size:18px;">💡</span>
+                        ¿Estás anotadx en algún listado pero no sabés qué cargos podés tomar? Buscalo acá
+                    </span>
+                    <span class="chevron" style="font-size:16px;">▼</span>
+                </summary>
+                <div class="accordion-content" style="padding:0 20px; background:#f8fcff; border-top:1px solid #c0d4e8;">
+                    <ul style="color:#6f9ac8; font-size:14px; padding-left:20px; margin:15px 0; line-height:1.6;">
+                        <li style="margin-bottom:12px;">
+                            <strong style="color:#1937b0;">Entrá a la web de Puntaje Ingreso Docencia del ABC.</strong><br>
+                            <a href="https://misservicios.abc.gob.ar/servaddo/puntaje.ingreso.docencia/" target="_blank" style="display:inline-block; margin-top:8px; padding:10px 18px; background:#006ee9; color:white; border-radius:50px; text-decoration:none; font-weight:bold; font-size:13px; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:transform 0.2s;">🔗 Ir a Puntaje Ingreso Docencia</a>
+                        </li>
+                        <li style="margin-bottom:8px;"><strong style="color:#1937b0;">Poné tu DNI, seleccioná el año y listado.</strong></li>
+                        <li style="margin-bottom:8px;"><strong style="color:#1937b0;">En la sección de 'Títulos', fijate en la columna 'Área'.</strong> Esos son los códigos que tenés que usar en nuestro buscador de cargos (ej: CCD, /PR, etc).</li>
+                    </ul>
+                </div>
+            </details>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <input type="text" id="searchMateriaInput" class="form-control" placeholder="Ej: Geografía o GGF" onkeyup="filtrarMaterias()">
+            </div>
+            
+            <div id="materiasResults" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Result items injected here -->
+            </div>
+        </div>
+    </div>
+
     <script>
+        // DICCIONARIO MATERIAS
+        let listadoMaterias = [];
+
+        async function openMateriasModal() {
+            openModal('modalMaterias');
+            document.getElementById('searchMateriaInput').value = '';
+            document.getElementById('materiasResults').innerHTML = '';
+            
+            if (listadoMaterias.length === 0) {
+                try {
+                    const response = await fetch('materias.json');
+                    listadoMaterias = await response.json();
+                } catch (error) {
+                    console.error("Error cargando materias:", error);
+                }
+            }
+        }
+
+        function normalizeSearchText(text) {
+            if (!text) return "";
+            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        }
+
+        function filtrarMaterias() {
+            const rawQuery = document.getElementById('searchMateriaInput').value.trim();
+            const resultsContainer = document.getElementById('materiasResults');
+            
+            if (rawQuery.length < 2) {
+                resultsContainer.innerHTML = '<p style="text-align:center; color:#6f9ac8; margin-top:20px;">Escribí al menos 2 letras para buscar...</p>';
+                return;
+            }
+
+            const query = normalizeSearchText(rawQuery);
+
+            const resultados = listadoMaterias.filter(m => {
+                const cod = normalizeSearchText(m.codigo);
+                const nom = normalizeSearchText(m.nombre);
+                return cod.includes(query) || nom.includes(query);
+            });
+
+            // Evitar duplicados exactos (mismo codigo y nombre)
+            const uniqueResults = [];
+            const ids = new Set();
+            for (const item of resultados) {
+                const uniqueStr = item.codigo + item.nombre;
+                if (!ids.has(uniqueStr)) {
+                    ids.add(uniqueStr);
+                    uniqueResults.push(item);
+                }
+            }
+
+            // Jerarquía de Resultados (Pro): Coincidencia exacta de Código va primero
+            uniqueResults.sort((a, b) => {
+                const isExactA = normalizeSearchText(a.codigo) === query ? 1 : 0;
+                const isExactB = normalizeSearchText(b.codigo) === query ? 1 : 0;
+                return isExactB - isExactA;
+            });
+
+            const topResults = uniqueResults;
+            
+            if (topResults.length === 0) {
+                resultsContainer.innerHTML = '<p style="text-align:center; color:#e53e3e; margin-top:20px; font-weight:bold;">No se encontraron materias.</p>';
+                return;
+            }
+
+            resultsContainer.innerHTML = topResults.map(m => `
+                <div class="materia-item">
+                    <div class="materia-text">
+                        <span class="materia-codigo">Código: ${m.codigo}</span>
+                        <strong class="materia-nombre">${m.nombre}</strong>
+                    </div>
+                    <button class="materia-btn" onclick="copiarCodigo('${m.codigo}', this)">
+                        📋 Copiá el código
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function copiarCodigo(codigo, btnElement) {
+            navigator.clipboard.writeText(codigo).then(() => {
+                const originalText = btnElement.innerHTML;
+                btnElement.innerHTML = '✅ ¡Copiado!';
+                btnElement.style.background = '#166534';
+                setTimeout(() => {
+                    btnElement.innerHTML = originalText;
+                    btnElement.style.background = '#006ee9';
+                }, 2000);
+            });
+        }
+
         // Modal Handlers
         function openModal(id) {
             document.getElementById(id).classList.add('active');
