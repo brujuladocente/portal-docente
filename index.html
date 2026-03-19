@@ -853,21 +853,21 @@
             <button class="close-btn" onclick="closeModal('modalFree')">×</button>
             <h2 style="margin-top:0; color: #1937b0;">Activar Plan Gratis</h2>
             <div class="info-alert">
-                El Plan Gratis está estrictamente limitado a <b>1 distrito</b> y <b>1 código de materia</b>.<br>
-                Ideal para monitorear un único perfil docente.
+                <b>¡Recibí las ofertas en tu mail al instante!</b><br><br>
+                Activá este servicio y te avisamos por correo cada vez que se publique un cargo que coincida con tu búsqueda. Tené en cuenta que el Plan Gratis está limitado a 1 solo código de materia y 1 solo distrito por cada dirección de mail.
             </div>
 
             <form id="freemiumForm">
                 <div class="form-group">
                     <label class="form-label">Nombre y Apellido (Opcional)</label>
-                    <input type="text" id="freeNombre" class="form-control" placeholder="Escribe tu nombre">
+                    <input type="text" id="freeNombre" class="form-control" placeholder="Escribí tu nombre">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Correo Electrónico *</label>
+                    <label class="form-label">Correo Electrónico (el mail por el cual querés que te lleguen las ofertas) *</label>
                     <input type="email" id="freeEmail" class="form-control" placeholder="tu@correo.com.ar" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Distrito *</label>
+                    <label class="form-label">Distrito (donde buscás las horas) *</label>
                     <select id="freeDistrito" class="form-control" required>
                         <option value="" disabled selected>Selecciona un distrito</option>
                         <option value="N DE JULIO">9 de Julio</option>
@@ -1008,11 +1008,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Código de Materia *</label>
+                    <label class="form-label">Código de Materia (el código de 2 o 3 letras, ej: /PR, CCD) *</label>
                     <input type="text" id="freeMateria" class="form-control"
-                        placeholder="Asegúrate de no usar comas (Ej: /PR)" required>
+                        placeholder="Asegurate de no usar comas (Ej: /PR)" required>
                 </div>
-                <button type="submit" class="btn-primary" id="btnFreeSubmit">Activar Suscripción Gratis</button>
+                <button type="submit" class="btn-primary" id="btnFreeSubmit">Activar mis Alertas Gratis</button>
                 <div id="freeStatus" class="status-message"></div>
             </form>
         </div>
@@ -1385,8 +1385,8 @@
             const statusDiv = document.getElementById('freeStatus');
             const materiaInput = document.getElementById('freeMateria').value.trim();
 
-            if (materiaInput.includes(',') || materiaInput.includes(';')) {
-                statusDiv.textContent = "El Plan Gratis solo permite 1 código de materia a la vez. Quita las comas.";
+            if (materiaInput.includes(',') || materiaInput.includes(';') || materiaInput.includes(' ')) {
+                statusDiv.textContent = "Recordá que es solo un código por mail. Para monitorear todo tu título, ¡pasate a Premium!";
                 statusDiv.className = "status-message status-error";
                 return;
             }
@@ -1426,7 +1426,7 @@
                 statusDiv.className = "status-message status-error";
             } finally {
                 btn.disabled = false;
-                btn.textContent = "Activar Suscripción Gratis";
+                btn.textContent = "Activar mis Alertas Gratis";
             }
         });
 
