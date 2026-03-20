@@ -20,9 +20,7 @@ ofertas.db
 notified_ids.json
 usuarios.json
 
-# Desactivar GitHub Actions por ahora
-.github/workflows/
-*.yml
+
 # ==========================================================
 # IMPORTANTE: NO IGNORAR ofertas_enviadas.json
 # ==========================================================
