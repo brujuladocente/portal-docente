@@ -166,16 +166,42 @@ def main():
     
     if es_github_actions:
         print("Entorno: GitHub Actions detectado.")
-        # En Actions, se invoca uno u otro según una variable de entorno inyectada en el workflow (o se corren por cron)
-        tipo_tarea = os.environ.get("TIPO_TAREA", "COSECHA")
+        tipo_tarea = os.environ.get("TIPO_TAREA", "AUTO")
+        
         if tipo_tarea == "COSECHA":
             tarea_cosecha()
         elif tipo_tarea == "NOTIFICACION":
             tarea_notificacion()
-        else:
+        elif tipo_tarea == "COMPLETO":
             print("Ejecutando ciclo completo (Cosecha seguida de Notificación)...")
             tarea_cosecha()
             tarea_notificacion()
+        else:
+            # Modo AUTO por defecto: Cosecha siempre, Notifica solo en horarios clave
+            from datetime import datetime, timedelta
+            
+            # Obtener hora actual en UTC y convertir a ART (UTC-3)
+            ahora_utc = datetime.utcnow()
+            ahora_art = ahora_utc - timedelta(hours=3)
+            
+            print(f"Hora detectada (ART): {ahora_art.strftime('%H:%M')} hs.")
+            
+            # 1) Ejecutar siempre la cosecha
+            tarea_cosecha()
+            
+            # 2) Evaluar si la hora coincide con el ciclo de notificación (y si es de Lunes a Viernes)
+            horarios_notificacion = [8, 10, 14, 18]
+            es_dia_habil = ahora_art.weekday() < 5  # 0=Lunes, 4=Viernes, 5=Sábado, 6=Domingo
+            
+            if ahora_art.hour in horarios_notificacion and es_dia_habil:
+                print("Hora y día hábiles coincidentes. Ejecutando alertas...")
+                tarea_notificacion()
+            else:
+                if not es_dia_habil:
+                    print(f"Es fin de semana (día {ahora_art.weekday()}). Saltando fase de alertas.")
+                else:
+                    print(f"La hora actual ({ahora_art.hour} hs) no corresponde al envío de notificaciones. Saltando fase de alertas.")
+                
         sys.exit(0)
 
     # Entorno Local: Programación de Tareas

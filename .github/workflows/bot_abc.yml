@@ -2,8 +2,8 @@ name: Bot Autoejecutable Lector ABC
 
 on:
   schedule:
-    # Se activa cada 1 hora entre las 08:00 y las 21:00 de Argentina (11:00 a 00:00 UTC) lun-vie
-    - cron: '0 11-23,0 * * 1-5'
+    # Se activa cada 1 hora entre las 08:00 y las 21:00 de Argentina (11:00 a 00:00 UTC) todos los días
+    - cron: '0 11-23,0 * * *'
   workflow_dispatch: # Permite ejecutar el bot manualmente desde la pestaña Actions
 
 permissions:
