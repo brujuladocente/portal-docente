@@ -402,7 +402,7 @@
         /* Mobile Adjustments */
         @media (max-width: 1023px) {
             .navbar {
-                padding: 16px 20px;
+                padding: 16px 10px;
                 position: relative;
             }
 
@@ -429,23 +429,71 @@
                 transition: all 0.3s;
             }
 
+            .mobile-backdrop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 998;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .mobile-backdrop.open {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
             .mobile-menu {
                 position: fixed;
                 top: 0;
-                left: -100%;
-                width: 80%;
+                left: 0;
+                transform: translateX(-100%);
+                width: 70%;
+                max-width: 300px;
                 height: 100vh;
                 background-color: var(--bg-light);
                 z-index: 999;
                 display: flex;
                 flex-direction: column;
-                padding: 100px 40px 40px 40px;
+                padding: 40px 30px;
                 box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
-                transition: left 0.3s ease;
+                transition: transform 0.3s ease-in-out;
             }
 
             .mobile-menu.open {
-                left: 0;
+                transform: translateX(0);
+            }
+
+            .mobile-menu-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #e0e4eb;
+                margin-top: 5px;
+            }
+
+            .mobile-menu-close {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background-color: #DC3545;
+                color: white;
+                border: none;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                font-size: 18px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                padding: 0;
             }
 
             .mobile-menu a {
@@ -457,13 +505,28 @@
                 text-transform: uppercase;
             }
 
+            .mobile-subitems {
+                display: flex;
+                flex-direction: column;
+                margin-left: 20px;
+                margin-bottom: 24px;
+                margin-top: -10px;
+            }
+
+            .mobile-menu a.mobile-sublink {
+                color: #4A6FFE;
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 16px;
+                text-transform: none;
+            }
+
             .desktop-text {
                 display: none;
             }
 
             .mobile-text {
                 display: inline;
-                text-transform: lowercase;
             }
 
             .tools-grid {
@@ -536,6 +599,7 @@
 
             .nav-brand {
                 font-size: 20px;
+                margin-left: 20px;
             }
 
             .decor {
@@ -796,9 +860,12 @@
 
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 10px;
+                gap: 0;
             }
 
             .hero-section {
@@ -980,16 +1047,30 @@
             <a href="#cursos">Cursos</a>
             <a href="#quienes-somos">Quiénes somos</a>
         </div>
-        <a href="https://cafecito.app/docenteszonasur" target="_blank" class="btn-yellow right-btn"
+        <a href="https://cafecito.app/brujuladocente" target="_blank" class="btn-yellow right-btn"
             style="text-decoration: none; text-align: center;">
             <span class="desktop-text">Formas de colaborar</span>
             <span class="mobile-text">Colaborar</span>
         </a>
     </nav>
 
+    <!-- Mobile Sidebar Backdrop -->
+    <div class="mobile-backdrop" id="mobile-backdrop"></div>
+
     <!-- Mobile Sidebar -->
     <div class="mobile-menu" id="mobile-sidebar">
+        <button class="mobile-menu-close" id="mobile-close-btn">&times;</button>
+        <div class="mobile-menu-header">
+            <a href="#" class="nav-brand" style="margin: 0; font-size: 16px; text-decoration: none;">PROFEPORTAL <span style="font-weight: 300; color: #4A6FFE;">CONURBANO</span></a>
+        </div>
         <a href="#herramientas" class="mobile-link">Herramientas</a>
+        <div class="mobile-subitems">
+            <a href="#" class="mobile-link mobile-sublink" onclick="openModal('modalSearch')">Buscador</a>
+            <a href="#" class="mobile-link mobile-sublink">Calculadora de Sueldo</a>
+            <a href="#" class="mobile-link mobile-sublink" onclick="openMateriasModal()">Diccionario de Materias</a>
+            <a href="#" class="mobile-link mobile-sublink">Generador de CV</a>
+            <a href="#" class="mobile-link mobile-sublink" onclick="openModal('modalFree')">Alertas Gratis</a>
+        </div>
         <a href="#cursos" class="mobile-link">Cursos</a>
         <a href="#quienes-somos" class="mobile-link">Quiénes somos</a>
     </div>
@@ -2156,17 +2237,31 @@
             const mobileBtn = document.getElementById('mobile-menu-btn');
             const mobileSidebar = document.getElementById('mobile-sidebar');
             const mobileLinks = document.querySelectorAll('.mobile-link');
+            const mobileBackdrop = document.getElementById('mobile-backdrop');
+            const mobileCloseBtn = document.getElementById('mobile-close-btn');
+
+            function closeMobileMenu() {
+                if (mobileSidebar) mobileSidebar.classList.remove('open');
+                if (mobileBackdrop) mobileBackdrop.classList.remove('open');
+            }
 
             if (mobileBtn) {
                 mobileBtn.addEventListener('click', () => {
-                    mobileSidebar.classList.toggle('open');
+                    mobileSidebar.classList.add('open');
+                    if (mobileBackdrop) mobileBackdrop.classList.add('open');
                 });
             }
 
+            if (mobileCloseBtn) {
+                mobileCloseBtn.addEventListener('click', closeMobileMenu);
+            }
+
+            if (mobileBackdrop) {
+                mobileBackdrop.addEventListener('click', closeMobileMenu);
+            }
+
             mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileSidebar.classList.remove('open');
-                });
+                link.addEventListener('click', closeMobileMenu);
             });
         });
     </script>
