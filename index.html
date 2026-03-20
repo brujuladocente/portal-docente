@@ -274,25 +274,89 @@
         .delay-5 { transition-delay: 0.5s; }
         .delay-6 { transition-delay: 0.6s; }
 
-        /* Desktop specific overriding of tools grid */
+        /* Desktop specific overriding */
         @media (min-width: 1024px) {
             .tools-grid { grid-template-columns: repeat(5, 1fr); }
             .decor { display: block; }
+            .menu-toggle { display: none; }
+            .mobile-menu { display: none !important; }
+            .mobile-text { display: none; }
         }
 
-        /* Mobile Adjustments for Grid */
-        @media (max-width: 1024px) {
-            .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .hero-content h1 { font-size: 50px; }
-            .decor { display: none; }
-            .section-blue, .section-light { padding: 40px 5%; }
-            .hero-section { padding: 40px 5%; min-height: auto; }
-        }
-        @media (max-width: 768px) {
-            .tools-grid { grid-template-columns: 1fr; }
+        /* Mobile Adjustments */
+        @media (max-width: 1023px) {
+            .navbar {
+                padding: 16px 20px;
+                position: relative;
+            }
             .nav-links { display: none; }
-            .hero-section { flex-direction: column; text-align: center; }
-            .hero-content { max-width: 100%; }
+            
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                width: 30px;
+                height: 25px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+            .menu-toggle span {
+                display: block;
+                width: 100%;
+                height: 3px;
+                background-color: var(--bg-blue);
+                border-radius: 2px;
+                transition: all 0.3s;
+            }
+
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--bg-light);
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                padding: 100px 40px 40px 40px;
+                box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+            }
+            .mobile-menu.open { left: 0; }
+            .mobile-menu a {
+                color: var(--bg-blue);
+                text-decoration: none;
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 24px;
+                text-transform: uppercase;
+            }
+
+            .desktop-text { display: none; }
+            .mobile-text { display: inline; text-transform: lowercase; }
+
+            .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .tool-card { padding: 15px 12px; }
+            .tool-icon { width: 32px; height: 32px; margin-bottom: 10px; }
+            .tool-card h3 { font-size: 14px; margin-bottom: 8px; }
+            .tool-card p { font-size: 11px; line-height: 1.3; }
+
+            .hero-section { flex-direction: column; text-align: center; padding: 40px 20px; min-height: auto; }
+            .hero-content { max-width: 100%; margin-bottom: 30px; }
+            .hero-content h1 { font-size: 40px; line-height: 1.18; margin-bottom: 15px; }
+            .hero-content p { font-size: 16px; max-width: 100%; }
+            .hero-image { justify-content: center; width: 100%; }
+            .hero-image img { max-width: 150px; margin: 0 auto; }
+
+            .section-blue, .section-light { padding: 40px 20px; }
+            .section-title { font-size: 28px; margin-bottom: 30px; }
+            .nav-brand { font-size: 20px; }
+            .decor { display: none; }
+            .cursos-content p { font-size: 15px; }
+            .quienes-content p { font-size: 15px; }
+            .bottom-section { border-radius: 20px 20px 0 0; }
+            .btn-yellow { padding: 10px 16px; font-size: 16px; }
         }
 
         /* Modals Overrides */
@@ -683,14 +747,29 @@
 
 
     <nav class="navbar">
+        <div class="menu-toggle" id="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <a href="#" class="nav-brand">PROFEPORTAL <span>CONURBANO</span></a>
         <div class="nav-links">
             <a href="#herramientas">Herramientas</a>
             <a href="#cursos">Cursos</a>
             <a href="#quienes-somos">Quiénes somos</a>
         </div>
-        <button class="btn-yellow right-btn">Formas de colaborar</button>
+        <a href="https://cafecito.app/docenteszonasur" target="_blank" class="btn-yellow right-btn" style="text-decoration: none; text-align: center;">
+            <span class="desktop-text">Formas de colaborar</span>
+            <span class="mobile-text">colaborar</span>
+        </a>
     </nav>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-menu" id="mobile-sidebar">
+        <a href="#herramientas" class="mobile-link">Herramientas</a>
+        <a href="#cursos" class="mobile-link">Cursos</a>
+        <a href="#quienes-somos" class="mobile-link">Quiénes somos</a>
+    </div>
 
     <section class="hero-section">
         <div class="hero-content fade-in">
@@ -1821,6 +1900,25 @@
 
             const animatableElements = document.querySelectorAll('.slide-up, .scale-in, .fade-in');
             animatableElements.forEach(el => observer.observe(el));
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileSidebar.classList.toggle('open');
+                });
+            }
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileSidebar.classList.remove('open');
+                });
+            });
         });
     </script>
 </body>

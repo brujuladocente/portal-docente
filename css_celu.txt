@@ -1,0 +1,937 @@
+/* Landing */
+
+position: relative;
+width: 1080px;
+height: 1920px;
+
+background: #FFFFFF;
+
+
+/* Group */
+
+position: absolute;
+left: 44.73%;
+right: 29.24%;
+top: 4.17%;
+bottom: 94.17%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 44.73%;
+right: 53%;
+top: 4.17%;
+bottom: 94.17%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 47.63%;
+right: 49.86%;
+top: 4.17%;
+bottom: 94.17%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 50.94%;
+right: 46.91%;
+top: 4.19%;
+bottom: 94.19%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 54.09%;
+right: 43.85%;
+top: 4.19%;
+bottom: 94.17%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 57.13%;
+right: 41.03%;
+top: 4.19%;
+bottom: 94.19%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 59.84%;
+right: 38.26%;
+top: 4.19%;
+bottom: 94.19%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 62.27%;
+right: 35.39%;
+top: 4.19%;
+bottom: 94.19%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 65.3%;
+right: 32.55%;
+top: 4.19%;
+bottom: 94.19%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 68.26%;
+right: 29.24%;
+top: 4.17%;
+bottom: 94.17%;
+
+background: #4A6FFE;
+
+
+/* Group */
+
+position: absolute;
+left: 12.69%;
+right: 71.3%;
+top: 4.17%;
+bottom: 94.17%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.69%;
+right: 84.93%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.4%;
+right: 81.86%;
+top: 4.17%;
+bottom: 94.17%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 18.57%;
+right: 79.04%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 21.28%;
+right: 76.39%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 23.59%;
+right: 73.72%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 26.63%;
+right: 71.3%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Group */
+
+position: absolute;
+left: 29.43%;
+right: 57.2%;
+top: 4.17%;
+bottom: 94.17%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 29.43%;
+right: 68.18%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.23%;
+right: 65.37%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 34.99%;
+right: 62.27%;
+top: 4.17%;
+bottom: 94.17%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 38.15%;
+right: 59.78%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 40.63%;
+right: 57.2%;
+top: 4.21%;
+bottom: 94.21%;
+
+background: #4A6FFE;
+
+
+/* Vector 1 */
+
+position: absolute;
+left: 3.15%;
+right: 92.13%;
+top: 4.38%;
+bottom: 95.62%;
+
+border: 2px solid #4A6FFE;
+
+
+/* Vector 2 */
+
+position: absolute;
+left: 3.15%;
+right: 92.13%;
+top: 5.12%;
+bottom: 94.88%;
+
+border: 2px solid #4A6FFE;
+
+
+/* Vector 3 */
+
+position: absolute;
+left: 3.15%;
+right: 92.13%;
+top: 5.85%;
+bottom: 94.15%;
+
+border: 2px solid #4A6FFE;
+
+
+/* manito */
+
+position: absolute;
+left: 116.94%;
+right: -67.41%;
+top: 13.28%;
+bottom: 51.17%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 78.95%;
+right: 18.65%;
+top: 12.31%;
+bottom: 84.47%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 76.56%;
+right: 18.65%;
+top: 5.69%;
+bottom: 86.48%;
+
+background: #4A6FFE;
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 83.77%;
+top: 8.45%;
+bottom: 66.9%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 1.12%;
+right: 84.89%;
+top: 9.37%;
+bottom: 67.83%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 83.77%;
+top: 8.45%;
+bottom: 66.9%;
+
+background: #4A6FFE;
+
+
+/* Group */
+
+position: absolute;
+left: 79.11%;
+right: 0%;
+top: 8.45%;
+bottom: 66.9%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 80.22%;
+right: 1.12%;
+top: 9.37%;
+bottom: 67.83%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 79.11%;
+right: 0%;
+top: 8.45%;
+bottom: 66.9%;
+
+background: #4A6FFE;
+
+
+/* Group */
+
+position: absolute;
+left: 13.99%;
+right: 56.32%;
+top: 8.45%;
+bottom: 66.9%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 15.11%;
+right: 57.44%;
+top: 9.37%;
+bottom: 67.83%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 13.99%;
+right: 56.32%;
+top: 8.45%;
+bottom: 66.9%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 23.17%;
+right: 19.78%;
+top: 0.93%;
+bottom: 0.93%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 50.99%;
+right: 29.23%;
+top: 1.52%;
+bottom: 86.15%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.38%;
+right: 43.96%;
+top: 0%;
+bottom: 78.51%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 61.16%;
+right: 18.65%;
+top: 1.53%;
+bottom: 78.17%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 22.03%;
+right: 18.66%;
+top: 8.45%;
+bottom: 0%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 79.1%;
+right: 18.65%;
+top: 11.67%;
+bottom: 85.83%;
+
+background: #4A6FFE;
+
+
+/* Group */
+
+position: absolute;
+left: 12.66%;
+right: 82.06%;
+top: 9.54%;
+bottom: 68.7%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 13.79%;
+right: 83.17%;
+top: 10.47%;
+bottom: 69.63%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.66%;
+right: 82.06%;
+top: 9.54%;
+bottom: 68.7%;
+
+background: #4A6FFE;
+
+
+/* Group */
+
+position: absolute;
+left: 4.52%;
+right: 91.86%;
+top: 16.17%;
+bottom: 74.33%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 5.64%;
+right: 92.99%;
+top: 17.1%;
+bottom: 75.26%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 4.52%;
+right: 91.86%;
+top: 16.17%;
+bottom: 74.33%;
+
+background: #4A6FFE;
+
+
+/* Group */
+
+position: absolute;
+left: 83.33%;
+right: 14.43%;
+top: 9.7%;
+bottom: 68.25%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 84.45%;
+right: 15.55%;
+top: 10.63%;
+bottom: 69.17%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 83.33%;
+right: 14.43%;
+top: 9.7%;
+bottom: 68.25%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.7%;
+right: 64.38%;
+top: 16.18%;
+bottom: 81.97%;
+
+background: #4A6FFE;
+
+
+/* Vector */
+
+position: absolute;
+left: 14.19%;
+right: 64.38%;
+top: 22.65%;
+bottom: 75.5%;
+
+background: #4A6FFE;
+
+
+/* Rectangle 1 */
+
+position: absolute;
+left: -19.63%;
+right: -57.96%;
+top: 8.8%;
+bottom: 20.1%;
+
+background: #4A6FFE;
+border-radius: 22px;
+
+
+/* Rectangle 2 */
+
+position: absolute;
+left: 26.67%;
+right: 24.44%;
+top: 18.33%;
+bottom: 66.82%;
+
+
+
+/* Rectangle 2 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #F5F5F5;
+border-radius: 22px;
+
+
+/* Buscador de cargos */
+
+position: absolute;
+left: 29.72%;
+right: 41.48%;
+top: 24.22%;
+bottom: 69.01%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 30px;
+line-height: 36px;
+letter-spacing: 0.01em;
+
+color: #181713;
+
+
+
+/* Encuentra las ofertas vigentes extraídas del portal al instante. */
+
+position: absolute;
+left: 29.54%;
+right: 32.69%;
+top: 26.46%;
+bottom: 63.44%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 27px;
+letter-spacing: 0.01em;
+
+color: #181713;
+
+
+
+/* Capa_1 */
+
+position: absolute;
+left: 28.15%;
+right: 65.09%;
+top: 19.38%;
+bottom: 76.41%;
+
+transform: rotate(-24.13deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 11.98%;
+right: 23.28%;
+top: 17.02%;
+bottom: 25.51%;
+
+background: #181713;
+transform: rotate(-24.13deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 24.97%;
+right: 50.3%;
+top: 36.12%;
+bottom: 41.93%;
+
+background: #181713;
+transform: rotate(-24.13deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #181713;
+transform: rotate(-24.13deg);
+
+
+/* Rectangle 7 */
+
+position: absolute;
+left: 26.67%;
+right: 24.44%;
+top: 34.69%;
+bottom: 50.47%;
+
+
+
+/* Rectangle 2 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #F5F5F5;
+border-radius: 22px;
+
+
+/* Capa_1 */
+
+position: absolute;
+left: 29.91%;
+right: 60.42%;
+top: 37.24%;
+bottom: 61.08%;
+
+transform: rotate(180deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0.01%;
+bottom: 0%;
+
+background: #181713;
+transform: rotate(180deg);
+
+
+/* Alertas gratuitas */
+
+position: absolute;
+left: 29.72%;
+right: 41.48%;
+top: 40.57%;
+bottom: 52.66%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 30px;
+line-height: 36px;
+letter-spacing: 0.01em;
+
+color: #181713;
+
+
+
+/* Encuentra las ofertas vigentes extraídas del portal al instante. */
+
+position: absolute;
+left: 29.54%;
+right: 32.69%;
+top: 42.81%;
+bottom: 52.66%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 27px;
+letter-spacing: 0.01em;
+
+color: #181713;
+
+
+
+/* Rectangle 8 */
+
+position: absolute;
+left: 26.67%;
+right: 24.44%;
+top: 51.04%;
+bottom: 34.11%;
+
+
+
+/* Rectangle 2 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #F5F5F5;
+border-radius: 22px;
+
+
+/* Capa_1 */
+
+position: absolute;
+left: 29.91%;
+right: 60.42%;
+top: 53.59%;
+bottom: 44.72%;
+
+transform: rotate(180deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0.01%;
+bottom: 0%;
+
+background: #181713;
+transform: rotate(180deg);
+
+
+/* Alertas gratuitas */
+
+position: absolute;
+left: 29.72%;
+right: 41.48%;
+top: 56.93%;
+bottom: 36.3%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 30px;
+line-height: 36px;
+letter-spacing: 0.01em;
+
+color: #181713;
+
+
+
+/* Encuentra las ofertas vigentes extraídas del portal al instante. */
+
+position: absolute;
+left: 29.54%;
+right: 32.69%;
+top: 59.17%;
+bottom: 36.3%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 27px;
+letter-spacing: 0.01em;
+
+color: #181713;
+
+
+
+/* Nuestras herramientas */
+
+position: absolute;
+left: 14.63%;
+right: 12.87%;
+top: 11.41%;
+bottom: 82.14%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 48px;
+line-height: 58px;
+text-align: center;
+letter-spacing: 0.01em;
+
+color: #F5F5F5;
+
+
+
+/* Rectangle 6 */
+
+position: absolute;
+left: 78.15%;
+right: 5.46%;
+top: 3.54%;
+bottom: 93.59%;
+
+background: #F0C842;
+border-radius: 22px;
+
+
+/* colaborar */
+
+position: absolute;
+left: 80.93%;
+right: -12.41%;
+top: 4.17%;
+bottom: 93.33%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 27px;
+line-height: 33px;
+
+color: #4A6FFE;
+
