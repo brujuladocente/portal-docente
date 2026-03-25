@@ -8,6 +8,22 @@ const MP_ACCESS_TOKEN = 'APP_USR-ACA_VA_TU_ACCESS_TOKEN_REAL_DE_PRODUCCION'; // 
 const URL_FORMULARIO_INGRESO = 'https://tuweb.com/index.html#modalFree'; // URL de tu formulario/modal
 
 // ==========================================
+// FUNCIÓN PARA LOGUEAR EN LA PLANILLA
+// ==========================================
+function logToSheet(mensaje) {
+  try {
+    const ss = SpreadsheetApp.openById(SHEET_ID);
+    const sheet = ss.getSheetByName(SHEET_NAME);
+    if (!sheet) return;
+    const row = [new Date(), "[LOG_WEBHOOK]", mensaje, "", "", "", "", "", "", "", "", "", ""];
+    const primeraVacia = findFirstEmptyRow(sheet);
+    sheet.getRange(primeraVacia, 1, 1, row.length).setValues([row]);
+  } catch(e) {
+    console.error("Error guardando log: " + e);
+  }
+}
+
+// ==========================================
 // FUNCIÓN PRINCIPAL PARA EL WEBHOOK
 // ==========================================
 function doPost(e) {
@@ -16,30 +32,34 @@ function doPost(e) {
       const payload = JSON.parse(e.postData.contents);
       const action = payload.action || payload.topic || payload.type;
       
+      logToSheet("Recibido POST de MP. Action/Topic: " + action);
+      
       // Manejar notificaciones de pagos individuales o cobros de suscripción
       if (action === 'payment' || action === 'payment.created' || action === 'payment.updated') {
-        // En webhooks IPN a veces viene en payload.resource, o en payload.data.id
         const paymentId = (payload.data && payload.data.id) ? payload.data.id : null;
         
-        if (!paymentId && payload.resource) {
-          // Extraer ID de url tipo https://api.mercadopago.com/v1/payments/12345
+        let finalId = paymentId;
+        if (!finalId && payload.resource) {
           const parts = payload.resource.split('/');
-          paymentId = parts[parts.length - 1];
+          finalId = parts[parts.length - 1];
         }
         
-        if (paymentId) {
-          procesarNotificacionDePago(paymentId);
+        if (finalId) {
+          logToSheet("ID de pago detectado: " + finalId + ". Verificando en API...");
+          procesarNotificacionDePago(finalId);
+        } else {
+          logToSheet("Advertencia: Se recibió un action payment pero no se encontró el ID.");
         }
       }
       
-      // Siempre devolver 200 OK para que MP deje de enviar la notificación
       return ContentService.createTextOutput("OK").setMimeType(ContentService.MimeType.TEXT);
     }
     
+    logToSheet("Error: Datos recibidos vacíos o no reconocidos.");
     return ContentService.createTextOutput("Datos no reconocidos.").setMimeType(ContentService.MimeType.TEXT);
 
   } catch (error) {
-    console.error("Error completo en Webhook:", error);
+    logToSheet("Error fatal en doPost: " + error.toString());
     return ContentService.createTextOutput("Error").setMimeType(ContentService.MimeType.TEXT);
   }
 }
@@ -63,8 +83,8 @@ function procesarNotificacionDePago(paymentId) {
     
     // Solo actuamos si el pago está aprobado
     if (paymentInfo.status === 'approved') {
+      logToSheet("Pago " + paymentId + " APROBADO. Buscando email identificativo...");
       
-      // Buscar el email (Primero intentamos con external_reference, luego con email del pagador)
       let userEmail = paymentInfo.external_reference;
       if (!userEmail || userEmail === 'null' || userEmail === '') {
         if (paymentInfo.payer && paymentInfo.payer.email) {
@@ -74,13 +94,17 @@ function procesarNotificacionDePago(paymentId) {
       
       if (userEmail) {
         userEmail = String(userEmail).trim().toLowerCase();
+        logToSheet("Email encontrado: " + userEmail + ". Actualizando planilla...");
         actualizarGoogleSheet(userEmail, paymentInfo);
       } else {
-        console.error("Pago aprobado pero sin email identificativo. ID Pago: " + paymentId);
+        logToSheet("Fallo: Pago aprobado " + paymentId + " PERO NO TIENE EMAIL EN external_reference ni en payer.email.");
       }
+    } else {
+      logToSheet("Se ignoró el pago " + paymentId + " porque su estado es: " + paymentInfo.status);
     }
   } else {
-    console.error("Fallo al obtener detalle de pago: " + paymentId + " - Error SDK: " + response.getContentText());
+    // Aquí es donde caería el 1234567890 falso porque devuelve 404
+    logToSheet("Atención: Falló la validación del ID " + paymentId + ". MP devolvió código " + response.getResponseCode() + ". Detalles: " + response.getContentText());
   }
 }
 
