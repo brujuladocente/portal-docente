@@ -1921,17 +1921,17 @@
         function iniciarPago(tipo) {
             const emailInput = document.getElementById('premiumEmail');
             const email = emailInput.value.trim().toLowerCase();
-            const param = encodeURIComponent(email);
             
-            if (tipo === 'suscripcion') {
-                const urlSuscripcion = "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=5df9175419314a2d805cd74efabc18b8&external_reference=" + param;
-                window.open(urlSuscripcion, '_blank');
-            } else if (tipo === 'unico') {
-                // ATENCIÓN: Usamos la URL larga de Checkout Pro en lugar del mpago.la/1s7fyUe
-                // para evitar que el acortador de MercadoPago elimine el external_reference en el redirect
-                const urlUnico = "https://www.mercadopago.com.ar/payment-link/v1/redirect?link-id=0b78d89f-3f8c-4edf-a750-b684fde55829&source=link&external_reference=" + param;
-                window.open(urlUnico, '_blank');
-            }
+            // ATENCION FINAL:
+            // Como las URLs de Mercado Pago (Links y Suscripciones) ignoraban permanentemente el mail (external_reference) 
+            // al intentar inyectárselo por la URL, decidí cambiar la arquitectura y usar tu propio Google Apps Script 
+            // como un Servidor Puente.
+            // Cuando hacés clic, tu Frontend llama a Google > Google entra a MP por Base de Datos Privada vía API 
+            // incrustándole el mail por siempre > Mercado Pago devuelve tu Link Blindado > Y el usuario viaja allá.
+            const urlGAS = "https://script.google.com/macros/s/AKfycbwYNGUE5U2oEPtFOSN73CdasMFk6TMrQH0TFgVTntY8nAEvvXYOmdPQMuNpYbi5nQDUNw/exec";
+            const urlRedireccion = urlGAS + "?action=" + tipo + "&email=" + encodeURIComponent(email);
+            
+            window.open(urlRedireccion, '_blank');
         }
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
