@@ -37,6 +37,7 @@ usuarios.json
 webhook_mercado_pago.gs
 form_apps_script.gs
 *.gs
+Script_Formulario_Merge.js
 test_webhook.py
 
 # Archivos temporales locales de testeo y logs
