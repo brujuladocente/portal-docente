@@ -1516,42 +1516,48 @@
             <button class="close-btn" onclick="closeModal('modalPremium')">×</button>
             <h2 style="margin-top:0; color: #1937b0; text-align: center;">Ascender a Premium</h2>
             <p style="color: #6f9ac8; font-size:14px; margin-bottom: 20px; line-height:1.5; text-align: center;">
-                Monitoreá todos tus habilitantes de manera profesional y aumentá drásticamente tus posibilidades de tomar horas.<br><br>
+                Monitoreá todos tus habilitantes de manera profesional y aumentá drásticamente tus posibilidades de
+                tomar horas.<br><br>
                 ✔️ <b>Distritos Ilimitados</b><br>
                 ✔️ <b>Materias Ilimitadas</b><br>
                 ✔️ <b>Actualizaciones Diarias</b><br>
                 ✔️ <b>Notificaciones Directas al correo</b>
             </p>
-            
+
             <div class="form-group" style="margin-top: 25px;">
                 <label class="form-label">Ingresá el mail donde querés recibir las alertas *</label>
                 <input type="email" id="premiumEmail" class="form-control" placeholder="tu@correo.com.ar" required>
-                <div id="premiumEmailError" style="color: #e53e3e; font-size: 13px; margin-top: 5px; display: none;">Por favor, ingresá un correo electrónico válido.</div>
+                <div id="premiumEmailError" style="color: #e53e3e; font-size: 13px; margin-top: 5px; display: none;">Por
+                    favor, ingresá un correo electrónico válido.</div>
             </div>
-            
+
             <button type="button" class="btn-primary" onclick="goToPremiumStep2()">Continuar</button>
         </div>
 
         <!-- Paso 2: Opciones de Pago -->
         <div class="modal-content" style="padding: 35px 25px; display: none;" id="premiumStep2">
             <button class="close-btn" onclick="closeModal('modalPremium')">×</button>
-            <button type="button" onclick="goToPremiumStep1()" style="position: absolute; top: 20px; left: 20px; background: none; border: none; color: #6f9ac8; font-size: 24px; cursor: pointer;">←</button>
-            
+            <button type="button" onclick="goToPremiumStep1()"
+                style="position: absolute; top: 20px; left: 20px; background: none; border: none; color: #6f9ac8; font-size: 24px; cursor: pointer;">←</button>
+
             <h2 style="margin-top:0; color: #1937b0; text-align: center;">Elegí tu plan</h2>
-            
+
             <div class="info-alert" style="text-align:center; font-size:17px; margin-bottom: 20px; margin-top: 20px;">
                 Suscripción Mensual: <b>$2.500 ARS</b>
             </div>
 
             <button class="btn-primary btn-mp" style="font-size: 15px;" onclick="iniciarPago('suscripcion')">
-                <img src="MP_RGB_HANDSHAKE_color_horizontal.svg" alt="Mercado Pago" style="height: 28px; width: auto; margin-right: 12px; vertical-align: middle;">
+                <img src="MP_RGB_HANDSHAKE_color_horizontal.svg" alt="Mercado Pago"
+                    style="height: 28px; width: auto; margin-right: 12px; vertical-align: middle;">
                 Suscribirme con débito automático
             </button>
-            <p style="text-align:center; font-size: 13px; color: #6f9ac8; margin-top:8px; margin-bottom: 20px; font-weight: 500;">
+            <p
+                style="text-align:center; font-size: 13px; color: #6f9ac8; margin-top:8px; margin-bottom: 20px; font-weight: 500;">
                 Se debita de tu cuenta o tarjeta automáticamente todos los meses.
             </p>
 
-            <div style="display: flex; align-items: center; text-align: center; margin: 20px 0; color: #c0d4e8; font-size: 14px; font-weight: 600;">
+            <div
+                style="display: flex; align-items: center; text-align: center; margin: 20px 0; color: #c0d4e8; font-size: 14px; font-weight: 600;">
                 <hr style="flex: 1; border: none; border-top: 1px solid #e0e4eb;">
                 <span style="padding: 0 15px;">o</span>
                 <hr style="flex: 1; border: none; border-top: 1px solid #e0e4eb;">
@@ -1559,15 +1565,19 @@
 
             <button class="btn-outline" onclick="iniciarPago('unico')">
                 Abonar manualmente con MercadoPago
-                <span style="font-size:12px; font-weight:500; margin-top:4px;">(Transferencia de pago único - Sin débito)</span>
+                <span style="font-size:12px; font-weight:500; margin-top:4px;">(Transferencia de pago único - Sin
+                    débito)</span>
             </button>
-            <p style="text-align:center; font-size: 13px; color: #6f9ac8; margin-top:8px; margin-bottom: 20px; font-weight: 500;">
+            <p
+                style="text-align:center; font-size: 13px; color: #6f9ac8; margin-top:8px; margin-bottom: 20px; font-weight: 500;">
                 El acceso vence a los 30 días y requiere renovación manual.
             </p>
-            
-            <div style="background: #f8fcff; border: 1px solid #c0d4e8; padding: 12px; border-radius: 8px; margin-top: 24px;">
+
+            <div
+                style="background: #f8fcff; border: 1px solid #c0d4e8; padding: 12px; border-radius: 8px; margin-top: 24px;">
                 <p style="text-align:center; font-size: 13px; color: #1937b0; margin:0; line-height: 1.5;">
-                    <b>Importante:</b> Al finalizar el pago, tu cuenta se activará o creará automáticamente para el correo ingresado de forma inmediata.
+                    <b>Importante:</b> Al finalizar el pago, tu cuenta se activará o creará automáticamente para el
+                    correo ingresado de forma inmediata.
                 </p>
             </div>
         </div>
@@ -1903,35 +1913,57 @@
             const emailInput = document.getElementById('premiumEmail');
             const errorDiv = document.getElementById('premiumEmailError');
             const email = emailInput.value.trim().toLowerCase();
-            
+
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email || !emailRegex.test(email)) {
                 errorDiv.style.display = 'block';
                 emailInput.focus();
                 return;
             }
-            
+
             errorDiv.style.display = 'none';
             document.getElementById('premiumStep1').style.display = 'none';
             document.getElementById('premiumStep2').style.display = 'block';
-            
+
             // Ya no hace falta inyectar hrefs acá porque lo hacemos al hacer clic (iniciarPago)
         }
 
-        function iniciarPago(tipo) {
+        async function iniciarPago(tipo) {
             const emailInput = document.getElementById('premiumEmail');
             const email = emailInput.value.trim().toLowerCase();
+
+            // Bloqueamos los botones temporalmente para dar feedback visual y evitar doble clic
+            const btnSuscripcion = document.querySelector('.btn-mp');
+            const btnUnico = document.querySelector('.btn-outline');
             
-            // ATENCION FINAL:
-            // Como las URLs de Mercado Pago (Links y Suscripciones) ignoraban permanentemente el mail (external_reference) 
-            // al intentar inyectárselo por la URL, decidí cambiar la arquitectura y usar tu propio Google Apps Script 
-            // como un Servidor Puente.
-            // Cuando hacés clic, tu Frontend llama a Google > Google entra a MP por Base de Datos Privada vía API 
-            // incrustándole el mail por siempre > Mercado Pago devuelve tu Link Blindado > Y el usuario viaja allá.
-            const urlGAS = "https://script.google.com/macros/s/AKfycbwYNGUE5U2oEPtFOSN73CdasMFk6TMrQH0TFgVTntY8nAEvvXYOmdPQMuNpYbi5nQDUNw/exec";
-            const urlRedireccion = urlGAS + "?action=" + tipo + "&email=" + encodeURIComponent(email);
-            
-            window.open(urlRedireccion, '_blank');
+            if (btnSuscripcion) { btnSuscripcion.style.pointerEvents = 'none'; btnSuscripcion.style.opacity = '0.6'; }
+            if (btnUnico) { btnUnico.style.pointerEvents = 'none'; btnUnico.style.opacity = '0.6'; }
+
+            // Solo le ponemos el texto de carga al que el usuario efectivamente tocó
+            const btnClickeado = tipo === 'suscripcion' ? btnSuscripcion : btnUnico;
+            if (btnClickeado) { 
+                btnClickeado.innerHTML = '🛡️ Llevándote a Mercado Pago...'; 
+                btnClickeado.style.opacity = '1'; 
+            }
+
+            try {
+                const urlGAS = "https://script.google.com/macros/s/AKfycby2b6jJG5tfsym3iLY-xRKuF8fk2Ij6dp7xBOncuwDStlfir5bwMmytM10IlYPL4Nqehg/exec";
+                const peticionBackend = urlGAS + "?action=" + tipo + "&email=" + encodeURIComponent(email);
+
+                const response = await fetch(peticionBackend);
+                const data = await response.json();
+
+                if (data.url) {
+                    // Viajamos directamente a la URL final, esquivando Google Drive por completo.
+                    window.location.href = data.url;
+                } else {
+                    alert("Error vinculando cuenta: " + (data.error || "Asegurate de crear una Nueva Versión en Apps Script."));
+                    window.location.reload();
+                }
+            } catch (err) {
+                alert("Error de red intentando conectar la pasarela segura. Revisá tu conexión.");
+                window.location.reload();
+            }
         }
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
