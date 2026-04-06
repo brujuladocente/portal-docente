@@ -44,7 +44,7 @@
     "friasmederomilagros@abc.gob.ar": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": false
+      "ofertas_recibidas_hoy": true
     }
   }
 }
