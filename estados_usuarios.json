@@ -1,5 +1,5 @@
 {
-  "fecha_actual": "2026-04-07",
+  "fecha_actual": "2026-04-08",
   "usuarios": {
     "facupascielli@gmail.com": {
       "bienvenida_enviada": true,
@@ -9,7 +9,7 @@
     "prof.julietadenegri@gmail.com": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": true
+      "ofertas_recibidas_hoy": false
     },
     "melinaflecha91@gmail.com": {
       "bienvenida_enviada": true,
@@ -19,7 +19,7 @@
     "martinayjulietafilosofia@gmail.com": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": true
+      "ofertas_recibidas_hoy": false
     },
     "curti.laboral@gmail.com": {
       "bienvenida_enviada": true,
@@ -39,12 +39,12 @@
     "ezequielricartes2304@gmail.com": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": true
+      "ofertas_recibidas_hoy": false
     },
     "friasmederomilagros@abc.gob.ar": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": true
+      "ofertas_recibidas_hoy": false
     }
   }
 }
