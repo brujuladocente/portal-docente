@@ -1,5 +1,5 @@
 {
-  "fecha_actual": "2026-04-29",
+  "fecha_actual": "2026-04-30",
   "usuarios": {
     "facupascielli@gmail.com": {
       "bienvenida_enviada": true,
@@ -19,7 +19,7 @@
     "martinayjulietafilosofia@gmail.com": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": true
+      "ofertas_recibidas_hoy": false
     },
     "curti.laboral@gmail.com": {
       "bienvenida_enviada": true,
