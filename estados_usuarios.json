@@ -1,5 +1,5 @@
 {
-  "fecha_actual": "2026-06-19",
+  "fecha_actual": "2026-06-22",
   "usuarios": {
     "facupascielli@gmail.com": {
       "bienvenida_enviada": true,
@@ -44,7 +44,7 @@
     "friasmederomilagros@abc.gob.ar": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": false
+      "ofertas_recibidas_hoy": true
     },
     "anahimiselli@abc.gob.ar": {
       "bienvenida_enviada": true,
