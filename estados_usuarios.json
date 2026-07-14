@@ -1,10 +1,10 @@
 {
-  "fecha_actual": "2026-07-13",
+  "fecha_actual": "2026-07-14",
   "usuarios": {
     "facupascielli@gmail.com": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": true
+      "ofertas_recibidas_hoy": false
     },
     "prof.julietadenegri@gmail.com": {
       "bienvenida_enviada": true,
