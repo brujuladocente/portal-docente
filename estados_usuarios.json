@@ -1,5 +1,5 @@
 {
-  "fecha_actual": "2026-09-01",
+  "fecha_actual": "2026-09-02",
   "usuarios": {
     "facupascielli@gmail.com": {
       "bienvenida_enviada": true,
@@ -14,7 +14,7 @@
     "melinaflecha91@gmail.com": {
       "bienvenida_enviada": true,
       "espera_enviada": true,
-      "ofertas_recibidas_hoy": false
+      "ofertas_recibidas_hoy": true
     },
     "martinayjulietafilosofia@gmail.com": {
       "bienvenida_enviada": true,
